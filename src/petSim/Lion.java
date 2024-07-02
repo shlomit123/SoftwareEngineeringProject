@@ -15,10 +15,10 @@ public class Lion extends Pet {
  }
 
  @Override
- public void feed() {
+ public void feed(Food food) {
      System.out.println(getName() + " is eating!");
-     setHealth(getHealth() + 10);
-     setEnergy(getEnergy() + 10);
+     setHealth(food.getHealthValue() + 10);
+     setEnergy(food.getEnergyValue() + 10);
  }
 
  @Override

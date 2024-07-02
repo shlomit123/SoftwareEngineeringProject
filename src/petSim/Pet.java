@@ -51,7 +51,7 @@ public abstract class Pet {
  // Abstract methods to be implemented by subclasses
  public abstract void play();
 
- public abstract void feed();
+ public abstract void feed(Food food);
 
  public abstract void sleep();
 
