@@ -6,13 +6,15 @@ public abstract class Pet {
  private int health;
  private int energy;
  private int xp;
+ private int level;
 
  // Constructor
- public Pet(String name, int health, int energy, int xp) {
+ public Pet(String name, int health, int energy, int xp, int level) {
      this.name = name;
      this.health = health;
      this.energy = energy;
      this.xp = xp;
+     this.level = level;
  }
 
  // Getters and setters
@@ -47,6 +49,16 @@ public abstract class Pet {
  public void setXp(int xp) {
      this.xp = xp;
  }
+ 
+ public int getLevel() {
+     return level;
+ }
+
+ public void setLevel(int level) {
+     this.level = level;
+ }
+ 
+ public void levelUp() { this.level += 1; }
 
  // Abstract methods to be implemented by subclasses
  public abstract void play();
@@ -61,6 +73,7 @@ public abstract class Pet {
      System.out.println("Health: " + health);
      System.out.println("Energy: " + energy);
      System.out.println("XP: " + xp);
+     System.out.println("Level: " + level);
  }
 }
 

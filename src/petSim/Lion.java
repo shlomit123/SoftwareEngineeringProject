@@ -3,8 +3,8 @@ package petSim;
 //Example subclass of Pet
 public class Lion extends Pet {
 
- public Lion(String name, int health, int energy, int xp) {
-     super(name, health, energy, xp);
+ public Lion(String name, int health, int energy, int xp, int level) {
+     super(name, health, energy, xp, level);
  }
 
  @Override
@@ -16,9 +16,14 @@ public class Lion extends Pet {
 
  @Override
  public void feed(Food food) {
-     System.out.println(getName() + " is eating!");
-     setHealth(food.getHealthValue() + 10);
-     setEnergy(food.getEnergyValue() + 10);
+     System.out.println(getName() + " is eating " + food.getName() + " !");
+     setHealth(getHealth() + food.getHealthValue());
+     setEnergy(getEnergy() + food.getEnergyValue());
+ }
+ 
+ public void play(Game game) {
+     System.out.println(getName() + " is playing " + game.getName() + " !");
+     setEnergy(getEnergy() - game.getEnergyConsumeValue());
  }
 
  @Override
