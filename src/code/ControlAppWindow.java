@@ -6,16 +6,15 @@ import javax.swing.JPanel;
 
 public class ControlAppWindow extends JPanel {
 
-	ControlAppWindow(int x, int y, int width, int height) {
+	ControlAppWindow(int x, int y, int width, int height, MainAppWindow mainAppWindow) {
 		// Setting the size of the frame
-		this.setBounds(0, 0, width, height);
+		this.setBounds(x, y, width, height);
 		this.setBackground(Color.pink);
 		this.setLayout(null);
-		JPanel p1 = new JPanel();
-		TopPanel top = new TopPanel(width, 50);
-		p1.setBounds(0, 50, width, height - 50);
+		SelectedDevicesPanel devicesPanel = new SelectedDevicesPanel(width, height - 50, mainAppWindow);
+		TopPanel top = new TopPanel(width, 50, mainAppWindow);
 		this.add(top);
-		this.add(p1);
+		this.add(devicesPanel);
 
 	}
 

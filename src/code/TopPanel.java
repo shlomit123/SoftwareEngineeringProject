@@ -13,11 +13,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class TopPanel extends JPanel implements ActionListener {
-	JButton searchButton;
-	JButton sortButton;
-	JLabel titleLabel;
+	private JButton searchButton;
+	private JButton sortButton;
+	private JLabel titleLabel;
+	private MainAppWindow mainAppWindow;
 
-	public TopPanel(int width, int height) {
+	public TopPanel(int width, int height, MainAppWindow mainAppWindow1) {
 		this.setBackground(Color.white);
 		this.setBounds(0, 0, width, height);
 		this.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
@@ -31,7 +32,7 @@ public class TopPanel extends JPanel implements ActionListener {
 		searchButton.setIcon(new ImageIcon("resources\\searchIcon.png"));
 
 		titleLabel = new JLabel("Assigned Devices"); //
-		titleLabel.setPreferredSize(new Dimension(350, height));
+		titleLabel.setPreferredSize(new Dimension(210, height));
 		titleLabel.setHorizontalAlignment(JLabel.CENTER);
 		titleLabel.setHorizontalTextPosition(JLabel.CENTER);
 		titleLabel.setForeground(new Color(0x1F7E92));
@@ -51,12 +52,14 @@ public class TopPanel extends JPanel implements ActionListener {
 		this.add(titleLabel);
 		this.add(sortButton);
 
+		mainAppWindow = mainAppWindow1;
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == searchButton) {
-			System.out.println("Searching");
+			mainAppWindow.openDeviceSearchWindow();
 		} else if (e.getSource() == sortButton) {
 			System.out.println("Sorting");
 		}
