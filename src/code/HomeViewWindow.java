@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class HomeViewWindow extends JPanel {
@@ -24,5 +25,11 @@ public class HomeViewWindow extends JPanel {
 		g.fillRect(0, 0, 100, 100);
 		// g2d.setBackground(Color.black);
 		// g2d.drawImage(background, 0, 0, null);
+		Image TV = new ImageIcon("resources\\TV.png").getImage();
+		g.drawImage(TV, 408, 454, 110, 50, null); 
+		//Image AC1 = new ImageIcon("resources\\AC.jpg").getImage();
+		//g.drawImage(AC1, 408, 300, 110, 50, null);
+		Image lampOn = new ImageIcon("resources\\lampOn.jpg").getImage();
+		g.drawImage(lampOn, 625, 213, 27, 13, null); 
 	}
 }
