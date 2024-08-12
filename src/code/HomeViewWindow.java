@@ -72,11 +72,11 @@ public class HomeViewWindow extends JPanel {
 		//Image fOn = new ImageIcon("resources\\fOn.jpg").getImage();
 		//g.drawImage(fOn, 35, 443, 120, 3, null); 
 		//Image fBlue = new ImageIcon("resources\\fBlue.jpg").getImage();
-		//g.drawImage(fBlue, 35, 443, 120, 3, null); 
+		//g.drawImage(fBlue, 39, 443, 113, 3, null); 
 		//Image fGreen = new ImageIcon("resources\\fGreen.jpg").getImage();
-		//g.drawImage(fGreen, 35, 443, 120, 3, null); 
+		//g.drawImage(fGreen, 39, 443, 113, 3, null); 
 		//Image fPurple = new ImageIcon("resources\\fPurple.jpg").getImage();
-		//g.drawImage(fPurple, 35, 443, 120, 3, null); 
+		//g.drawImage(fPurple, 39, 443, 113, 3, null); 
 	}
 	//change temperatureAC1
 	public void setTemperature1(String newTemperature) {
