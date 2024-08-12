@@ -13,15 +13,16 @@ public class HomeViewWindow extends JPanel {
 	Image background;
 	private String temperature1;
 	private String temperature2;
-	private String lamp2Image;
-	private String lamp1Image;
+	private String lamp2path;
+	private String lamp1path;
+	private String channelpath;
 	
 	public HomeViewWindow(int x, int y, int width, int height, MainAppWindow mainAppWindow) {
 		// Setting the size of the frame
 		this.setBounds(x, y, width, height);
 		this.temperature1 = "24\u00B0C";
 		this.temperature2 = "25\u00B0C";
-		this.lamp2Image = "resources\\lamp2Off.png";
+		this.lamp2path = "resources\\lamp2Off.png";
 	}
 
 	public void paint(Graphics g) {
@@ -38,9 +39,9 @@ public class HomeViewWindow extends JPanel {
 		//add TV in down left room
 		Image TV = new ImageIcon("resources\\TV.png").getImage();
 		g.drawImage(TV, 408, 454, 110, 50, null);
-		//turn on sports in down left room
-		Image sports = new ImageIcon("resources\\sports.jpg").getImage();
-		g.drawImage(sports, 424, 456, 79, 42, null);
+		//show channel
+		Image channel = new ImageIcon(this.channelpath).getImage();
+		g.drawImage(channel, 424, 456, 79, 42, null);
 		
 		//add AC in upper left room
 		Image AC1 = new ImageIcon("resources\\AC4.png").getImage();
@@ -58,12 +59,11 @@ public class HomeViewWindow extends JPanel {
         g.drawString(this.temperature2, 100, 132);
         
         //add lamp2 in upper left room
-        Image lamp2 = new ImageIcon(this.lamp2Image).getImage();
+        Image lamp2 = new ImageIcon(this.lamp2path).getImage();
 		g.drawImage(lamp2, 140, 190, 60, 75, null); 
-		
 		//lamp in upper right room (for enabling turning on)
-		Image lampOn = new ImageIcon(this.lamp1Image).getImage();
-		g.drawImage(lampOn, 625, 213, 27, 13, null); 
+		Image lamp1On = new ImageIcon(this.lamp1path).getImage();
+		g.drawImage(lamp1On, 625, 213, 27, 13, null); 
 		
 		//add fluorescent to kitchen
 		Image fluorescent = new ImageIcon("resources\\florosent.jpg").getImage();
@@ -91,18 +91,30 @@ public class HomeViewWindow extends JPanel {
 	}
 	
 	public void turnOnLamp2() {
-		this.lamp2Image = "resources\\lamp2On.png";
+		this.lamp2path = "resources\\lamp2On.png";
 		repaint();
 	}
 	
 	public void turnOffLamp2() {
-		this.lamp2Image = "resources\\lamp2Off.png";
+		this.lamp2path = "resources\\lamp2Off.png";
 		repaint();
 	}
 	
 	public void turnOnLamp1() {
-		this.lamp1Image = "resources\\lampOn.jpg";
+		this.lamp1path = "resources\\lampOn1.jpg";
 		repaint();
 	}
+	
+	//set TV to sports channel
+	public void setSportsChannel() {
+		this.channelpath = "resources\\sports.jpg";
+		repaint();
+	}
+	//set TV to sports channel
+	public void setFoodChannel() {
+		this.channelpath = "resources\\masterChef.png";
+		repaint();
+	}
+
 	
 }
