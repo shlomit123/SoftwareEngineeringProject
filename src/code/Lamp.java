@@ -11,7 +11,7 @@ public class Lamp extends Device{
 		// Device vars
 		this.controlled = false;
 		this.status = false;
-		this.priority = 0;
+		this.priority = 3;
 		this.device_name = "Lamp";
 		this.type = "Lamp";
 		

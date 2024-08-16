@@ -18,7 +18,7 @@ public class TV extends Device{
 		// Device vars
 		this.controlled = false;
 		this.status = false;
-		this.priority = 2;
+		this.priority = 1;
 		this.device_name = "TV";
 		this.type = "TV";
 	}

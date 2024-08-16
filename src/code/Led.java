@@ -12,7 +12,6 @@ public class Led extends Device{
 		// Device vars
 		this.controlled = false;
 		this.status = false;
-		this.priority = 0;
 		this.device_name = "LED";
 		this.type = "LED";
 	}

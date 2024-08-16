@@ -55,7 +55,7 @@ public class HomeViewWindow extends JPanel {
 		Image AC2 = new ImageIcon("resources\\AC4.png").getImage();
 		g.drawImage(AC2, 20, 100, 160, 65, null);
 		g.setFont(new Font("Arial", Font.BOLD, 16));
-        g.setColor(Color.WHITE); 
+		g.setColor(new Color(255, 255, 255));
         g.drawString(this.temperature2, 100, 132);
         
         //add lamp2 in upper left room
@@ -73,8 +73,8 @@ public class HomeViewWindow extends JPanel {
 		//g.drawImage(fOn, 35, 443, 120, 3, null); 
 		//Image fBlue = new ImageIcon("resources\\fBlue.jpg").getImage();
 		//g.drawImage(fBlue, 39, 443, 113, 3, null); 
-		//Image fGreen = new ImageIcon("resources\\fGreen.jpg").getImage();
-		//g.drawImage(fGreen, 39, 443, 113, 3, null); 
+		Image fGreen = new ImageIcon("resources\\fGreen.jpg").getImage();
+		g.drawImage(fGreen, 39, 443, 113, 3, null); 
 		//Image fPurple = new ImageIcon("resources\\fPurple.jpg").getImage();
 		//g.drawImage(fPurple, 39, 443, 113, 3, null); 
 	}

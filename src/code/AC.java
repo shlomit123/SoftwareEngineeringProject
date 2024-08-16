@@ -20,7 +20,7 @@ public class AC extends Device {
 		// Device vars
 		this.controlled = false;
 		this.status = false;
-		this.priority = 1;
+		this.priority = 4;
 		this.device_name = "AC";
 		this.type = "AC";
 	}
