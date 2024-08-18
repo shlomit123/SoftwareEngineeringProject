@@ -1,19 +1,24 @@
 package code;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class TvControlWindow extends JFrame implements ActionListener {
 
-	private Dimension frameDimension = new Dimension(300, 300);
+	private Dimension frameDimension = new Dimension(170, 220);
 	private MainAppWindow mainAppWindow1;
 	private JButton toggleStatusButton;
 	private JButton increaseChannelButton;
@@ -74,33 +79,66 @@ public class TvControlWindow extends JFrame implements ActionListener {
 
 	public void updateDeviceControlWindow(TV tv) {
 		deviceControlPanel.removeAll();
+		deviceControlPanel.setLayout(new BoxLayout(deviceControlPanel, BoxLayout.Y_AXIS));
+		
+		// Load the power on/off icons
+        ImageIcon powerOnIcon = new ImageIcon("resources/on.png");
+        ImageIcon powerOffIcon = new ImageIcon("resources/off.png");
+        //create button and clear the background
 		toggleStatusButton = new JButton();
-		toggleStatusButton.setBounds(50, 50, 100, 100);
+		toggleStatusButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		toggleStatusButton.addActionListener(this);
-		if (tv.get_status()) {
-			toggleStatusButton.setText("Turn Off");
+		toggleStatusButton.setPreferredSize(new Dimension(50, 50));
+		toggleStatusButton.setFocusPainted(false);
+        toggleStatusButton.setContentAreaFilled(false);
+        toggleStatusButton.setBorderPainted(false);
+        toggleStatusButton.setOpaque(false);
+		
+        if (tv.get_status()) {
+			toggleStatusButton.setIcon(powerOffIcon);
 			deviceControlPanel.add(toggleStatusButton);
-			decreaseChannelButton = new JButton();
 			currentChanneLabel = new JLabel();
-			if (tv.get_channel() == 0) {
-				currentChanneLabel.setText("Sports Channel");
-			} else {
-				currentChanneLabel.setText("Food Channel");
-			}
+	        String channelInfo = "";
+	        if (tv.get_channel() == 0) {
+	            channelInfo = "Sports Channel";
+	        } else {
+	            channelInfo = "Food Channel";
+	        }
 
+	        currentChanneLabel.setText(channelInfo);
+	        currentChanneLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 14)); 
+	        //currentChanneLabel.setForeground(Color.blue);  
+	        currentChanneLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+			decreaseChannelButton = new JButton();
+			decreaseChannelButton.setFocusPainted(false);
+			decreaseChannelButton.setContentAreaFilled(false);
+			decreaseChannelButton.setBorderPainted(false);
 			increaseChannelButton = new JButton();
-			decreaseChannelButton.setText("Dec");
-			increaseChannelButton.setText("Inc");
+			increaseChannelButton.setFocusPainted(false);
+			increaseChannelButton.setContentAreaFilled(false);
+			increaseChannelButton.setBorderPainted(false);
+			decreaseChannelButton.setText("+");
+			decreaseChannelButton.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
+			increaseChannelButton.setText("-");
+			increaseChannelButton.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
 			decreaseChannelButton.addActionListener(this);
 			increaseChannelButton.addActionListener(this);
-
+			//align in the middle
+			decreaseChannelButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+			increaseChannelButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+			currentChanneLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+			
 			deviceControlPanel.add(toggleStatusButton);
+			deviceControlPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 			deviceControlPanel.add(decreaseChannelButton);
+			deviceControlPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 			deviceControlPanel.add(currentChanneLabel);
+			deviceControlPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 			deviceControlPanel.add(increaseChannelButton);
 
+			
 		} else {
-			toggleStatusButton.setText("Turn On");
+			toggleStatusButton.setIcon(powerOnIcon);
 			deviceControlPanel.add(toggleStatusButton);
 		}
 		revalidate();

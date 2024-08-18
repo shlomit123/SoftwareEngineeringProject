@@ -7,12 +7,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class LampControlWindow extends JFrame implements ActionListener {
 
-	private Dimension frameDimension = new Dimension(200, 200);
+	private Dimension frameDimension = new Dimension(120, 100);
 	private MainAppWindow mainAppWindow1;
 	private JButton toggleStatusButton;
 	private Lamp lamp;
@@ -73,14 +74,27 @@ public class LampControlWindow extends JFrame implements ActionListener {
 
 	public void updateDeviceControlWindow(Device device) {
 		deviceControlPanel.removeAll();
+		
+		// Load the power on/off icons
+        ImageIcon powerOnIcon = new ImageIcon("resources/on.png");
+        ImageIcon powerOffIcon = new ImageIcon("resources/off.png");
+        //create button and clear the background
 		toggleStatusButton = new JButton();
-		toggleStatusButton.setBounds(50, 50, 100, 100);
+		toggleStatusButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		toggleStatusButton.setAlignmentY(JComponent.CENTER_ALIGNMENT);
 		toggleStatusButton.addActionListener(this);
+		toggleStatusButton.setPreferredSize(new Dimension(50, 50));
+		toggleStatusButton.setFocusPainted(false);
+        toggleStatusButton.setContentAreaFilled(false);
+        toggleStatusButton.setBorderPainted(false);
+        toggleStatusButton.setOpaque(false);
+		
+		
 		if (device.get_status()) {
-			toggleStatusButton.setText("Turn Off");
+			toggleStatusButton.setIcon(powerOffIcon);
 			deviceControlPanel.add(toggleStatusButton);
 		} else {
-			toggleStatusButton.setText("Turn On");
+			toggleStatusButton.setIcon(powerOnIcon);
 			deviceControlPanel.add(toggleStatusButton);
 		}
 		revalidate();
@@ -93,3 +107,5 @@ public class LampControlWindow extends JFrame implements ActionListener {
 		super.paint(g);
 	}
 }
+
+

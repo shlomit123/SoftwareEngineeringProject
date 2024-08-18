@@ -5,9 +5,11 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -78,17 +80,39 @@ public class LedControlWindow extends JFrame implements ActionListener {
 
 	public void updateDeviceControlWindow(Led led) {
 		deviceControlPanel.removeAll();
+		deviceControlPanel.setLayout(new BoxLayout(deviceControlPanel, BoxLayout.Y_AXIS));
+
+        // Create a container panel for the buttons
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS)); 
+        buttonPanel.setAlignmentX(JComponent.CENTER_ALIGNMENT); 
+
+        // Load the power on/off icons
+        ImageIcon powerOnIcon = new ImageIcon("resources/on.png");
+        ImageIcon powerOffIcon = new ImageIcon("resources/off.png");
+        //create button and clear the background
 		toggleStatusButton = new JButton();
-		toggleStatusButton.setBounds(50, 50, 100, 100);
+		toggleStatusButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		toggleStatusButton.addActionListener(this);
+		toggleStatusButton.setPreferredSize(new Dimension(10, 10));
+		toggleStatusButton.setFocusPainted(false);
+        toggleStatusButton.setContentAreaFilled(false);
+        toggleStatusButton.setBorderPainted(false);
+        toggleStatusButton.setOpaque(false);
+        
+        // "Turn Off" button
+        //toggleStatusButton = new JButton();
+        //toggleStatusButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        //toggleStatusButton.setFocusPainted(false);
+		//toggleStatusButton.addActionListener(this);
 		if (led.get_status()) {
-			toggleStatusButton.setText("Turn Off");
+			toggleStatusButton.setIcon(powerOffIcon);
 			deviceControlPanel.add(toggleStatusButton);
 
 			defaultColorButton = new JRadioButton("Default");
-			blueColorButton = new JRadioButton("Blue");
-			greenColorButton = new JRadioButton("Green");
-			purpleColorButton = new JRadioButton("Purple");
+			blueColorButton = new JRadioButton("Blue    ");
+			greenColorButton = new JRadioButton("Green  ");
+			purpleColorButton = new JRadioButton("Purple ");
 
 			ButtonGroup colorChoicesButtonGroup = new ButtonGroup();
 			colorChoicesButtonGroup.add(defaultColorButton);
@@ -100,13 +124,19 @@ public class LedControlWindow extends JFrame implements ActionListener {
 			blueColorButton.addActionListener(this);
 			greenColorButton.addActionListener(this);
 			purpleColorButton.addActionListener(this);
+			
+			// Set alignment for color buttons and add them to the button panel
+            defaultColorButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+            blueColorButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+            greenColorButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+            purpleColorButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 
 			deviceControlPanel.add(defaultColorButton);
 			deviceControlPanel.add(blueColorButton);
 			deviceControlPanel.add(greenColorButton);
 			deviceControlPanel.add(purpleColorButton);
 		} else {
-			toggleStatusButton.setText("Turn On");
+			toggleStatusButton.setIcon(powerOnIcon);
 			deviceControlPanel.add(toggleStatusButton);
 		}
 		revalidate();

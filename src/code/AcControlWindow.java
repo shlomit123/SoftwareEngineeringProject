@@ -1,19 +1,22 @@
 package code;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class AcControlWindow extends JFrame implements ActionListener {
 
-	private Dimension frameDimension = new Dimension(200, 200);
+	private Dimension frameDimension = new Dimension(170, 220);
 	private MainAppWindow mainAppWindow1;
 	private JButton toggleStatusButton;
 	private JButton increaseTempButton;
@@ -91,20 +94,48 @@ public class AcControlWindow extends JFrame implements ActionListener {
 
 	public void updateDeviceControlWindow(AC ac) {
 		deviceControlPanel.removeAll();
+		deviceControlPanel.setLayout(new BoxLayout(deviceControlPanel, BoxLayout.Y_AXIS));
+		
+		// Load the power on/off icons
+        ImageIcon powerOnIcon = new ImageIcon("resources/on.png");
+        ImageIcon powerOffIcon = new ImageIcon("resources/off.png");
+        //create button and clear the background
 		toggleStatusButton = new JButton();
-		toggleStatusButton.setBounds(50, 50, 100, 100);
+		toggleStatusButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		toggleStatusButton.addActionListener(this);
+		toggleStatusButton.setPreferredSize(new Dimension(50, 50));
+		toggleStatusButton.setFocusPainted(false);
+        toggleStatusButton.setContentAreaFilled(false);
+        toggleStatusButton.setBorderPainted(false);
+        toggleStatusButton.setOpaque(false);
+        
 		if (ac.get_status()) {
-			toggleStatusButton.setText("Turn Off");
+			toggleStatusButton.setIcon(powerOffIcon);
 			deviceControlPanel.add(toggleStatusButton);
-			decreaseTempButton = new JButton();
 			tempLabel = new JLabel();
 			tempLabel.setText(ac.get_temp() + "\u00B0C");
+			
+			tempLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 14)); 
+	        //currentChanneLabel.setForeground(Color.blue);  
+			tempLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+			decreaseTempButton = new JButton();
+			decreaseTempButton.setFocusPainted(false);
+			decreaseTempButton.setContentAreaFilled(false);
+			decreaseTempButton.setBorderPainted(false);
 			increaseTempButton = new JButton();
-			decreaseTempButton.setText("Dec");
-			increaseTempButton.setText("Inc");
+			increaseTempButton.setFocusPainted(false);
+			increaseTempButton.setContentAreaFilled(false);
+			increaseTempButton.setBorderPainted(false);
+			decreaseTempButton.setText("+");
+			decreaseTempButton.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
+			increaseTempButton.setText("-");
+			increaseTempButton.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
 			decreaseTempButton.addActionListener(this);
 			increaseTempButton.addActionListener(this);
+			//align in the middle
+			decreaseTempButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+			increaseTempButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+			tempLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 
 			deviceControlPanel.add(toggleStatusButton);
 			deviceControlPanel.add(decreaseTempButton);
@@ -112,7 +143,7 @@ public class AcControlWindow extends JFrame implements ActionListener {
 			deviceControlPanel.add(increaseTempButton);
 
 		} else {
-			toggleStatusButton.setText("Turn On");
+			toggleStatusButton.setIcon(powerOnIcon);
 			deviceControlPanel.add(toggleStatusButton);
 		}
 		revalidate();
