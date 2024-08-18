@@ -15,6 +15,7 @@ public class SearchedDeviceButton extends JButton implements ActionListener {
 	private Home home;
 
 	public SearchedDeviceButton(ImageIcon deviceImg, Device device, MainAppWindow mainAppWindow1, Home home) {
+		// comment
 		super(device.get_device_name());
 		this.device = device;
 		this.setPreferredSize(new Dimension(100, 100));
