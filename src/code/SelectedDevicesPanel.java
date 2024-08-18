@@ -2,44 +2,74 @@ package code;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class SelectedDevicesPanel extends JPanel implements ActionListener {
+public class SelectedDevicesPanel extends JPanel {
 
-	DeviceButton b6, b7, b8, b9, b10;
-	DeviceButton[] allDevices1 = { b6, b7, b8, b9, b10 };
-	ArrayList<DeviceButton> selectedDevices1 = new ArrayList<DeviceButton>();
+	// private DeviceButton[] allDevicesButtons = new DeviceButton[6];
+	private ArrayList<DeviceButton> allButtons = new ArrayList<>();
+	private MainAppWindow mainWindow;
+	private Home home;
 
-	MainAppWindow mainWindow;
+	public SelectedDevicesPanel(int width, int height, MainAppWindow mainAppWindow, Home home1) {
+		// System.out.println("in SelectedDevicesPanel: constructor");
+		// System.out.println("all buttons: " + allDevicesButtons);
+		// System.out.println("all buttons in list: " + allButtons);
+		mainWindow = mainAppWindow;
+		home = home1;
+		updateSelectedDevices();
 
-	public SelectedDevicesPanel(int width, int height, MainAppWindow mainAppWindow) {
-		for (int i = 0; i < 5; i++) {
-			allDevices1[i] = new DeviceButton(new ImageIcon("resources\\ACicon.png"), "AC" + i, mainAppWindow);
-			if (i % 2 == 0) {
-				selectedDevices1.add(allDevices1[i]);
-				System.out.println("added " + i + "to selected devices");
-			}
-		}
 		this.setBackground(Color.pink);
 		this.setBounds(0, 50, width, height);
-		this.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+		this.setLayout(new FlowLayout(FlowLayout.LEFT, 7, 7));
 
-		for (int i = 0; i < selectedDevices1.size(); i++) {
-			this.add(selectedDevices1.get(i));
+		/*
+		 * this.revalidate();
+		 * System.out.println("calling repaint from selected devices"); this.repaint();
+		 */
+
+	}
+
+	public void updateSelectedDevices() {
+		// clear all current buttons from SelectedDevicesPanel
+		this.removeAll();
+		// clear all buttons from the buttons array
+		allButtons.clear();
+		// System.out.println("all devices: " + home.getDevices());
+		// System.out.println("all devices in list: " + allButtons);
+		// add the currently controlled devices
+		/*
+		 * for (int i = 0; i < home.getDevices().size(); i++) {
+		 * home.getDevices().get(i).set_controlled(true); if
+		 * (home.getDevices().get(i).get_controlled()) { allDevicesButtons[i] = new
+		 * DeviceButton(new ImageIcon("resources\\ACicon.png"),
+		 * home.getDevices().get(i).get_device_name(), mainWindow);
+		 * this.add(allDevicesButtons[i]); } }
+		 */
+		for (int i = 0; i < home.getDevices().size(); i++) {
+			/*
+			 * if (i % 2 == 0) { home.getDevices().get(i).set_controlled(true); }
+			 */
+			// home.getDevices().get(i).set_controlled(true);
+			if (home.getDevices().get(i).get_controlled()) {
+				DeviceButton button = new DeviceButton(new ImageIcon("resources\\ACicon.png"), home.getDevices().get(i),
+						mainWindow);
+				allButtons.add(button);
+				this.add(button);
+			}
 		}
-		mainWindow = mainAppWindow;
+		// Refresh the panel to show updated buttons
 		this.revalidate();
 		this.repaint();
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-
+	public void paint(Graphics g) {
+		// System.out.println("in SelectedDevicesPanel: paint");
+		super.paint(g);
 	}
-
 }

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,8 +18,10 @@ public class TopPanel extends JPanel implements ActionListener {
 	private JButton sortButton;
 	private JLabel titleLabel;
 	private MainAppWindow mainAppWindow;
+	private Home home;
 
-	public TopPanel(int width, int height, MainAppWindow mainAppWindow1) {
+	public TopPanel(int width, int height, MainAppWindow mainAppWindow1, Home home1) {
+		// System.out.println("in TopPanel: constructor");
 		this.setBackground(Color.white);
 		this.setBounds(0, 0, width, height);
 		this.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
@@ -53,7 +56,8 @@ public class TopPanel extends JPanel implements ActionListener {
 		this.add(sortButton);
 
 		mainAppWindow = mainAppWindow1;
-
+		home = home1;
+		// System.out.println("end of TopPanel: constructor");
 	}
 
 	@Override
@@ -61,8 +65,18 @@ public class TopPanel extends JPanel implements ActionListener {
 		if (e.getSource() == searchButton) {
 			mainAppWindow.openDeviceSearchWindow();
 		} else if (e.getSource() == sortButton) {
-			System.out.println("Sorting");
+			System.out.println("Sorting button pressed");
+			home.sortDevices();
+			home.getMainAppWindow().getControllAppWindow().getSelectedDevicesPanel().updateSelectedDevices();
 		}
+	}
+
+	@Override
+	public void paint(Graphics g) {
+		// System.out.println("in TopPanel: paint");
+		super.paint(g);
+		// System.out.println("new paint, now calling selected repaint");
+		mainAppWindow.getControllAppWindow().getSelectedDevicesPanel().repaint();
 	}
 
 }

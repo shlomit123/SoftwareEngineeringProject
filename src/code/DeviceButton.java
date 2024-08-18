@@ -10,12 +10,12 @@ import javax.swing.JButton;
 
 public class DeviceButton extends JButton implements ActionListener {
 
-	String name;
+	Device device;
 	MainAppWindow mainAppWindow;
 
-	DeviceButton(ImageIcon deviceImg, String deviceName, MainAppWindow mainAppWindow1) {
-		super(deviceName);
-		this.name = deviceName;
+	DeviceButton(ImageIcon deviceImg, Device device, MainAppWindow mainAppWindow1) {
+		super(device.get_device_name());
+		this.device = device;
 		this.setPreferredSize(new Dimension(100, 100));
 		this.setBackground(Color.pink);
 		this.setFocusable(false);
@@ -28,6 +28,6 @@ public class DeviceButton extends JButton implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		mainAppWindow.openDeviceControlWindow(this.name);
+		mainAppWindow.openDeviceControlWindow(this.device);
 	}
 }
