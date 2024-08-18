@@ -65,7 +65,6 @@ public class TopPanel extends JPanel implements ActionListener {
 		if (e.getSource() == searchButton) {
 			mainAppWindow.openDeviceSearchWindow();
 		} else if (e.getSource() == sortButton) {
-			System.out.println("Sorting button pressed");
 			home.sortDevices();
 			home.getMainAppWindow().getControllAppWindow().getSelectedDevicesPanel().updateSelectedDevices();
 		}
