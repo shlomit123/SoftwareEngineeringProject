@@ -2,19 +2,19 @@ package code;
 
 public class Lamp extends Device {
 
-	public Lamp(int id) {
-		this.reset(id);
+	public Lamp(String name) {
+		this.reset(name);
 	}
 
 	@Override
-	public void reset(int id) {
+	public void reset(String name) {
 		// Device vars
 		this.controlled = false;
 		this.status = false;
 		this.priority = 3;
-		this.device_name = "Lamp";
+		this.device_name = name;
 		this.type = "Lamp";
-		this.id = id;
+		this.iconPath = "resources\\lampicon.jpg";
 	}
 
 }

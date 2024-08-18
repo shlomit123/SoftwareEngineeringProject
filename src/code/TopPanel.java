@@ -35,7 +35,7 @@ public class TopPanel extends JPanel implements ActionListener {
 		searchButton.setIcon(new ImageIcon("resources\\searchIcon.png"));
 
 		titleLabel = new JLabel("Assigned Devices"); //
-		titleLabel.setPreferredSize(new Dimension(210, height));
+		titleLabel.setPreferredSize(new Dimension(160, height));
 		titleLabel.setHorizontalAlignment(JLabel.CENTER);
 		titleLabel.setHorizontalTextPosition(JLabel.CENTER);
 		titleLabel.setForeground(new Color(0x1F7E92));
@@ -49,7 +49,9 @@ public class TopPanel extends JPanel implements ActionListener {
 		sortButton.setBorderPainted(false); // Remove the border //
 		sortButton.setContentAreaFilled(false); // Remove the background //
 		sortButton.setFocusPainted(false); // Remove the focus indicator
-		sortButton.setIcon(new ImageIcon("resources\\sortIcon.png"));
+		ImageIcon sortIcon = ImageResizer.resizeImageIcon(new ImageIcon("resources\\sortnew.jpg"), 50, 50);
+		// sortButton.setIcon(new ImageIcon("resources\\sortIcon.png"));
+		sortButton.setIcon(sortIcon);
 
 		this.add(searchButton);
 		this.add(titleLabel);

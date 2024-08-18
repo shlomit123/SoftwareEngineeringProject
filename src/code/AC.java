@@ -5,12 +5,12 @@ public class AC extends Device {
 	private int temp;
 	private int mode;
 
-	public AC(int id) {
-		this.reset(id);
+	public AC(String name) {
+		this.reset(name);
 	}
 
 	@Override
-	public void reset(int id) {
+	public void reset(String name) {
 
 		// Local vars
 		this.temp = 25;
@@ -20,9 +20,9 @@ public class AC extends Device {
 		this.controlled = false;
 		this.status = false;
 		this.priority = 4;
-		this.device_name = "AC";
+		this.device_name = name;
 		this.type = "AC";
-		this.id = id;
+		this.iconPath = "resources\\acicon.jpg";
 	}
 
 	// Method to get the temperature field of the device

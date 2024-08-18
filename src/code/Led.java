@@ -4,21 +4,21 @@ public class Led extends Device {
 
 	private int color;
 
-	public Led(int id) {
-		this.reset(id);
+	public Led(String name) {
+		this.reset(name);
 	}
 
 	@Override
-	public void reset(int id) {
+	public void reset(String name) {
 		// Local vars
 		this.color = 0;
 		// Device vars
 		this.controlled = false;
 		this.status = false;
 		this.priority = 2;
-		this.device_name = "LED";
+		this.device_name = name;
 		this.type = "LED";
-		this.id = id;
+		this.iconPath = "resources\\ledicon.jpg";
 	}
 
 	// Method to get the priority field of the device

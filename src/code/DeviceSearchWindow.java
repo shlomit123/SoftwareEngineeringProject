@@ -19,7 +19,7 @@ public class DeviceSearchWindow extends JFrame {
 		// Setting the program to exit when closing the frame
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		// Setting the size of the frame
-		this.setSize(400, 400);
+		this.setSize(415, 365);
 		// prevent frame from being re-sized
 		this.setResizable(false);
 		// setting frame's position to center of screen
@@ -32,8 +32,8 @@ public class DeviceSearchWindow extends JFrame {
 		this.setIconImage(logo.getImage());
 		this.setLayout(null);
 
-		this.devicesPanel = new SearchedDevicesPanel(400, 350, mainAppWindow, home);
-		this.searchPanel = new SearchTextBoxPanel(400, 50, mainAppWindow, home);
+		this.devicesPanel = new SearchedDevicesPanel(415, 315, mainAppWindow, home);
+		this.searchPanel = new SearchTextBoxPanel(415, 50, mainAppWindow, home);
 		this.add(searchPanel);
 		this.add(devicesPanel);
 		// Making the frame visible

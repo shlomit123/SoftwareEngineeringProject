@@ -6,7 +6,7 @@ public abstract class Device {
 	protected boolean status = false;
 	protected boolean controlled = false;
 	protected int priority;
-	protected int id;
+	protected String iconPath;
 
 	// method to turn on the device
 	public void turn_on() {
@@ -44,9 +44,8 @@ public abstract class Device {
 		return this.priority;
 	}
 
-	// Method to get the id field of the device
-	public int get_id() {
-		return this.id;
+	public String getIconPath() {
+		return this.iconPath;
 	}
 
 	// Setters
@@ -80,5 +79,5 @@ public abstract class Device {
 	}
 
 	// Abstract method to reset the device to its default state
-	public abstract void reset(int id);
+	public abstract void reset(String name);
 }
