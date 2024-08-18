@@ -10,8 +10,7 @@ import javax.swing.JPanel;
 
 public class SearchedDevicesPanel extends JPanel {
 
-	// private DeviceButton[] allDevicesButtons = new DeviceButton[6];
-	private ArrayList<DeviceButton> allButtons = new ArrayList<>();
+	private ArrayList<SearchedDeviceButton> allButtons = new ArrayList<SearchedDeviceButton>();
 	private ArrayList<Device> SearchResult;
 	private MainAppWindow mainWindow;
 	private Home home;
@@ -56,10 +55,10 @@ public class SearchedDevicesPanel extends JPanel {
 		}
 		for (int i = 0; i < SearchResult.size(); i++) {
 			if (!SearchResult.get(i).get_controlled()) {
-				DeviceButton button = new DeviceButton(new ImageIcon("resources\\ACicon.png"), SearchResult.get(i),
-						mainWindow);
-				allButtons.add(button);
-				this.add(button);
+				SearchedDeviceButton sButton = new SearchedDeviceButton(new ImageIcon("resources\\ACicon.png"),
+						SearchResult.get(i), mainWindow, home);
+				allButtons.add(sButton);
+				this.add(sButton);
 			}
 		}
 		// Refresh the panel to show updated buttons

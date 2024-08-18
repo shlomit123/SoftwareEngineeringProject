@@ -13,7 +13,7 @@ public class DeviceButton extends JButton implements ActionListener {
 	Device device;
 	MainAppWindow mainAppWindow;
 
-	DeviceButton(ImageIcon deviceImg, Device device, MainAppWindow mainAppWindow1) {
+	public DeviceButton(ImageIcon deviceImg, Device device, MainAppWindow mainAppWindow1) {
 		super(device.get_device_name());
 		this.device = device;
 		this.setPreferredSize(new Dimension(100, 100));
