@@ -17,9 +17,9 @@ public class SearchedDevicesPanel extends JPanel {
 	private Home home;
 
 	public SearchedDevicesPanel(int width, int height, MainAppWindow mainAppWindow, Home home1) {
-		System.out.println("in SearchedDevicesPanel: constructor");
+		// System.out.println("in SearchedDevicesPanel: constructor");
 		// System.out.println("all buttons: " + allDevicesButtons);
-		System.out.println("all buttons in list: " + allButtons);
+		// System.out.println("all buttons in list: " + allButtons);
 		mainWindow = mainAppWindow;
 		home = home1;
 		updateSearchedDevices("");
@@ -40,8 +40,6 @@ public class SearchedDevicesPanel extends JPanel {
 		this.removeAll();
 		// clear all buttons from the buttons array
 		allButtons.clear();
-		System.out.println("all devices: " + home.getDevices());
-		System.out.println("all devices in list: " + allButtons);
 		// add the currently controlled devices
 		/*
 		 * for (int i = 0; i < home.getDevices().size(); i++) {
@@ -51,7 +49,7 @@ public class SearchedDevicesPanel extends JPanel {
 		 * home.getDevices().get(i).get_device_name(), mainWindow);
 		 * this.add(allDevicesButtons[i]); } }
 		 */
-		if (searchedType == "") {
+		if (searchedType.compareTo("") == 0) {
 			SearchResult = home.getDevices();
 		} else {
 			SearchResult = home.findDevice(searchedType);
@@ -71,7 +69,7 @@ public class SearchedDevicesPanel extends JPanel {
 
 	@Override
 	public void paint(Graphics g) {
-		System.out.println("in SelectedDevicesPanel: paint");
+		// System.out.println("in SelectedDevicesPanel: paint");
 		super.paint(g);
 	}
 }

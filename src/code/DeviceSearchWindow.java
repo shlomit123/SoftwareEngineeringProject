@@ -1,17 +1,18 @@
 package code;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-public class DeviceSearchWindow extends JFrame implements ActionListener {
+public class DeviceSearchWindow extends JFrame {
 
-	MainAppWindow mainAppWindow1;
+	private SearchedDevicesPanel devicesPanel;
+	private SearchTextBoxPanel searchPanel;
+	private MainAppWindow mainAppWindow1;
 
-	public DeviceSearchWindow(MainAppWindow mainAppWindow) {
+	public DeviceSearchWindow(MainAppWindow mainAppWindow, Home home) {
+		mainAppWindow1 = mainAppWindow;
 		// Initiating a new JFrame (a GUI canvas to add components to)
 		// setting the frame's title
 		this.setTitle("Device search window");
@@ -31,19 +32,20 @@ public class DeviceSearchWindow extends JFrame implements ActionListener {
 		this.setIconImage(logo.getImage());
 		this.setLayout(null);
 
-		SelectedDevicesPanel devicesPanel = new SelectedDevicesPanel(400, 350, mainAppWindow);
-		SearchTextBoxPanel searchPanel = new SearchTextBoxPanel(400, 50, mainAppWindow);
+		this.devicesPanel = new SearchedDevicesPanel(400, 350, mainAppWindow, home);
+		this.searchPanel = new SearchTextBoxPanel(400, 50, mainAppWindow, home);
 		this.add(searchPanel);
 		this.add(devicesPanel);
 		// Making the frame visible
 		this.setVisible(true);
 
-		mainAppWindow1 = mainAppWindow;
-
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
+	public SearchedDevicesPanel getSearchedDevicesPanel() {
+		return this.devicesPanel;
+	}
 
+	public SearchTextBoxPanel geSearchTextBoxPanel() {
+		return this.searchPanel;
 	}
 }

@@ -16,8 +16,9 @@ public class SearchTextBoxPanel extends JPanel implements ActionListener {
 	private JButton submitSearchButton;
 	private JTextField searchTextField;
 	private MainAppWindow mainAppWindow;
+	private Home home;
 
-	public SearchTextBoxPanel(int width, int height, MainAppWindow mainAppWindow1) {
+	public SearchTextBoxPanel(int width, int height, MainAppWindow mainAppWindow1, Home home) {
 		this.setBackground(Color.white);
 		this.setBounds(0, 0, width, height);
 		this.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
@@ -37,13 +38,17 @@ public class SearchTextBoxPanel extends JPanel implements ActionListener {
 		this.add(searchTextField);
 		this.add(submitSearchButton);
 
-		mainAppWindow = mainAppWindow1;
+		this.mainAppWindow = mainAppWindow1;
+		this.home = home;
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println(searchTextField.getText());
+		// System.out.println(searchTextField.getText());
+		home.getMainAppWindow().getControllAppWindow().getSelectedDevicesPanel().updateSelectedDevices();
+		home.getMainAppWindow().getDeviceSearchWindow().getSearchedDevicesPanel()
+				.updateSearchedDevices(searchTextField.getText());
 	}
 
 }
