@@ -21,9 +21,9 @@ public class SearchedDevicesPanel extends JPanel {
 		// System.out.println("all buttons in list: " + allButtons);
 		mainWindow = mainAppWindow;
 		home = home1;
-		updateSearchedDevices("");
+		updateSearchedDevices("EMPTY");
 
-		this.setBackground(Color.pink);
+		this.setBackground(new Color(225, 225, 225));
 		this.setBounds(0, 50, width, height);
 		this.setLayout(new FlowLayout(FlowLayout.LEFT, 7, 7));
 
@@ -48,14 +48,17 @@ public class SearchedDevicesPanel extends JPanel {
 		 * home.getDevices().get(i).get_device_name(), mainWindow);
 		 * this.add(allDevicesButtons[i]); } }
 		 */
-		if (searchedType.compareTo("") == 0) {
+		if (searchedType.compareTo("EMPTY") == 0) {
+			SearchResult = home.findDevice("");
+		} else if (searchedType.compareTo("") == 0) {
 			SearchResult = home.getDevices();
 		} else {
 			SearchResult = home.findDevice(searchedType);
 		}
 		for (int i = 0; i < SearchResult.size(); i++) {
 			if (!SearchResult.get(i).get_controlled()) {
-				SearchedDeviceButton sButton = new SearchedDeviceButton(new ImageIcon("resources\\ACicon.png"),
+				SearchedDeviceButton sButton = new SearchedDeviceButton(
+						ImageResizer.resizeImageIcon(new ImageIcon(SearchResult.get(i).getIconPath()), 75, 75),
 						SearchResult.get(i), mainWindow, home);
 				allButtons.add(sButton);
 				this.add(sButton);

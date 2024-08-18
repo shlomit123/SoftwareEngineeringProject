@@ -56,7 +56,7 @@ public class HomeViewWindow extends JPanel {
 		g.drawImage(AC1, 440, 100, 160, 65, null);
 		// add degrees text on AC1
 		g.setFont(new Font("Arial", Font.BOLD, 16));
-		g.setColor(Color.WHITE);
+		g.setColor(Color.black);
 		if (this.temperature1.compareTo("") != 0) {
 			g.drawString(this.temperature1, 520, 132);
 		}
@@ -65,7 +65,7 @@ public class HomeViewWindow extends JPanel {
 		Image AC2 = new ImageIcon("resources\\AC4.png").getImage();
 		g.drawImage(AC2, 20, 100, 160, 65, null);
 		g.setFont(new Font("Arial", Font.BOLD, 16));
-		g.setColor(new Color(255, 255, 255));
+		g.setColor(Color.black);
 		if (this.temperature2.compareTo("") != 0) {
 			g.drawString(this.temperature2, 100, 132);
 		}

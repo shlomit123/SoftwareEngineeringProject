@@ -52,7 +52,7 @@ public class LampControlWindow extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == toggleStatusButton) {
 			lamp.toggle();
-			if (lamp.get_id() == 10) {
+			if (lamp.get_device_name().compareTo("Right Lamp") == 0) {
 				if (lamp.get_status()) {
 					mainAppWindow1.getHomeView().turnOnLamp1();
 				} else {

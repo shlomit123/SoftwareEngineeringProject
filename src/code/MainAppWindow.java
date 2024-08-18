@@ -31,7 +31,7 @@ public class MainAppWindow extends JFrame {
 		// Setting the program to exit when closing the frame
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// Setting the size of the frame
-		this.setSize(WIDTH, HEIGHT);
+		this.setSize(WIDTH - 50, HEIGHT);
 		// prevent frame from being re-sized
 		this.setResizable(false);
 		// setting frame's position to center of screen
@@ -45,13 +45,17 @@ public class MainAppWindow extends JFrame {
 		this.setLayout(null);
 		home = home1;
 		homeView = new HomeViewWindow(0, 0, (int) CONTENT_PANE_WIDTH * 2 / 3, CONTENT_PANE_HEIGHT, this, home);
-		controlApp = new ControlAppWindow((int) CONTENT_PANE_WIDTH * 2 / 3, 0, (int) CONTENT_PANE_WIDTH / 3,
+		controlApp = new ControlAppWindow(((int) CONTENT_PANE_WIDTH * 2 / 3), 0, ((int) CONTENT_PANE_WIDTH / 3) - 50,
 				CONTENT_PANE_HEIGHT, this, home);
 		this.add(homeView);
 		this.add(controlApp);
 
 		// Making the frame visible
 		this.setVisible(true);
+
+		// information message
+		JOptionPane.showMessageDialog(this, "Welcome to your home. lots of imformation", "title",
+				JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	public HomeViewWindow getHomeView() {
@@ -76,7 +80,7 @@ public class MainAppWindow extends JFrame {
 					JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			if (device.get_device_type().compareTo("Lamp") == 0) {
-				if (device.get_id() == 10) {
+				if (device.get_device_name().compareTo("Right Lamp") == 0) {
 					currentLampControlWindow = new LampControlWindow(home.getLamp1(), this);
 				} else {
 					currentLampControlWindow = new LampControlWindow(home.getLamp2(), this);
@@ -98,12 +102,12 @@ public class MainAppWindow extends JFrame {
 				});
 				currentLedControlWindow.setVisible(true);
 			} else if (device.get_device_type().compareTo("AC") == 0) {
-				if (device.get_id() == 30) {
+				if (device.get_device_name().compareTo("Right AC") == 0) {
 					currentAcControlWindow = new AcControlWindow(home.getAc1(), this);
 				} else {
 					currentAcControlWindow = new AcControlWindow(home.getAc2(), this);
 				}
-				currentLedControlWindow.addWindowListener(new WindowAdapter() {
+				currentAcControlWindow.addWindowListener(new WindowAdapter() {
 					@Override
 					public void windowClosed(WindowEvent e) {
 						currentAcControlWindow = null;

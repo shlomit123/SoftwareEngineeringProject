@@ -15,11 +15,10 @@ public class SearchedDeviceButton extends JButton implements ActionListener {
 	private Home home;
 
 	public SearchedDeviceButton(ImageIcon deviceImg, Device device, MainAppWindow mainAppWindow1, Home home) {
-		// comment
 		super(device.get_device_name());
 		this.device = device;
-		this.setPreferredSize(new Dimension(100, 100));
-		this.setBackground(Color.pink);
+		this.setPreferredSize(new Dimension(125, 125));
+		this.setBackground(Color.white);
 		this.setFocusable(false);
 		this.addActionListener(this);
 		this.setIcon(deviceImg);
@@ -31,10 +30,8 @@ public class SearchedDeviceButton extends JButton implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("searchedDeviceButtonPressed");
 		this.device.set_controlled(true);
 		home.getMainAppWindow().getControllAppWindow().getSelectedDevicesPanel().updateSelectedDevices();
-		home.getMainAppWindow().getDeviceSearchWindow().getSearchedDevicesPanel()
-				.updateSearchedDevices(this.device.get_device_type());
+		home.getMainAppWindow().getDeviceSearchWindow().getSearchedDevicesPanel().updateSearchedDevices("");
 	}
 }

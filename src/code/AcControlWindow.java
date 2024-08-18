@@ -56,7 +56,7 @@ public class AcControlWindow extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == toggleStatusButton) {
 			ac.toggle();
-			if (ac.get_id() == 30) {
+			if (ac.get_device_name().compareTo("Right AC") == 0) {
 				if (ac.get_status()) {
 					mainAppWindow1.getHomeView().setTemperature1(ac.get_temp() + "\u00B0C");
 				} else {
@@ -72,14 +72,14 @@ public class AcControlWindow extends JFrame implements ActionListener {
 			}
 		} else if (e.getSource() == decreaseTempButton) {
 			this.ac.set_temp(this.ac.get_temp() - 1);
-			if (ac.get_id() == 30) {
+			if (ac.get_device_name().compareTo("Right AC") == 0) {
 				mainAppWindow1.getHomeView().setTemperature1(ac.get_temp() + "\u00B0C");
 			} else {
 				mainAppWindow1.getHomeView().setTemperature2(ac.get_temp() + "\u00B0C");
 			}
 		} else if (e.getSource() == increaseTempButton) {
 			this.ac.set_temp(this.ac.get_temp() + 1);
-			if (ac.get_id() == 30) {
+			if (ac.get_device_name().compareTo("Right AC") == 0) {
 				mainAppWindow1.getHomeView().setTemperature1(ac.get_temp() + "\u00B0C");
 			} else {
 				mainAppWindow1.getHomeView().setTemperature2(ac.get_temp() + "\u00B0C");

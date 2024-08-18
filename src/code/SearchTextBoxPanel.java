@@ -51,4 +51,8 @@ public class SearchTextBoxPanel extends JPanel implements ActionListener {
 				.updateSearchedDevices(searchTextField.getText());
 	}
 
+	public JTextField getSearchTextField() {
+		return this.searchTextField;
+	}
+
 }

@@ -1,7 +1,5 @@
 package code;
 
-import java.awt.Color;
-
 import javax.swing.JPanel;
 
 public class ControlAppWindow extends JPanel {
@@ -13,7 +11,6 @@ public class ControlAppWindow extends JPanel {
 		// System.out.println("in ControlAppWindow: constructor");
 		// Setting the size of the frame
 		this.setBounds(x, y, width, height);
-		this.setBackground(Color.pink);
 		this.setLayout(null);
 		devicesPanel = new SelectedDevicesPanel(width, height - 50, mainAppWindow, home);
 		topPanel = new TopPanel(width, 50, mainAppWindow, home);

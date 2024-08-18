@@ -4,12 +4,12 @@ public class TV extends Device {
 
 	private int channel;
 
-	public TV(int id) {
-		this.reset(id);
+	public TV(String name) {
+		this.reset(name);
 	}
 
 	@Override
-	public void reset(int id) {
+	public void reset(String name) {
 
 		// Local vars
 		this.channel = 0;
@@ -18,9 +18,9 @@ public class TV extends Device {
 		this.controlled = false;
 		this.status = false;
 		this.priority = 1;
-		this.device_name = "TV";
+		this.device_name = name;
 		this.type = "TV";
-		this.id = id;
+		this.iconPath = "resources\\tvicon.jpg";
 	}
 
 	// Method to get the channel field of the device

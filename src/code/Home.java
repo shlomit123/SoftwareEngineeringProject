@@ -24,12 +24,12 @@ public class Home {
 	// create instances for all devices in home and add to devices array
 	public void initDevices() {
 		// System.out.println("in Home: initDevices");
-		lamp1 = new Lamp(10);
-		lamp2 = new Lamp(11);
-		led = new Led(20);
-		ac1 = new AC(30);
-		ac2 = new AC(31);
-		tv = new TV(40);
+		lamp1 = new Lamp("Right Lamp");
+		lamp2 = new Lamp("Left Lamp");
+		led = new Led("LED");
+		ac1 = new AC("Right AC");
+		ac2 = new AC("Left AC");
+		tv = new TV("TV");
 		devices.add(lamp1);
 		devices.add(ac1);
 		devices.add(lamp2);
@@ -60,7 +60,7 @@ public class Home {
 	public ArrayList<Device> findDevice(String type) {
 		ArrayList<Device> ofType = new ArrayList<>();
 		for (Device dev : devices) {
-			if (dev.type.compareTo(type) == 0)
+			if (dev.type.equalsIgnoreCase(type))
 				ofType.add(dev);
 		}
 		return ofType;

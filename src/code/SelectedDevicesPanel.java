@@ -23,7 +23,7 @@ public class SelectedDevicesPanel extends JPanel {
 		home = home1;
 		updateSelectedDevices();
 
-		this.setBackground(Color.pink);
+		this.setBackground(new Color(225, 225, 225));
 		this.setBounds(0, 50, width, height);
 		this.setLayout(new FlowLayout(FlowLayout.LEFT, 7, 7));
 
@@ -56,8 +56,9 @@ public class SelectedDevicesPanel extends JPanel {
 			 */
 			// home.getDevices().get(i).set_controlled(true);
 			if (home.getDevices().get(i).get_controlled()) {
-				DeviceButton button = new DeviceButton(new ImageIcon("resources\\ACicon.png"), home.getDevices().get(i),
-						mainWindow);
+				DeviceButton button = new DeviceButton(
+						ImageResizer.resizeImageIcon(new ImageIcon(home.getDevices().get(i).getIconPath()), 75, 75),
+						home.getDevices().get(i), mainWindow, home);
 				allButtons.add(button);
 				this.add(button);
 			}
