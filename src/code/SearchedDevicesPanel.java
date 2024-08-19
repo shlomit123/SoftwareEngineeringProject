@@ -64,6 +64,7 @@ public class SearchedDevicesPanel extends JPanel {
 				this.add(sButton);
 			}
 		}
+		Database.writeDevicesToFile(HomeViewWindow.home.getDevices());
 		// Refresh the panel to show updated buttons
 		this.revalidate();
 		this.repaint();

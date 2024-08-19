@@ -33,6 +33,8 @@ public abstract class Device {
 	public boolean get_status() {
 		return this.status ? true : false;
 	}
+	
+	public void set_status(boolean s) { this.status = s; }
 
 	// Method to get the controlled field of the device
 	public boolean get_controlled() {

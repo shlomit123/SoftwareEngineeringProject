@@ -149,6 +149,7 @@ public class AcControlWindow extends JFrame implements ActionListener {
 			toggleStatusButton.setIcon(powerOnIcon);
 			deviceControlPanel.add(toggleStatusButton);
 		}
+		Database.writeDevicesToFile(HomeViewWindow.home.getDevices());
 		revalidate();
 		repaint();
 	}

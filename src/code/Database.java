@@ -69,7 +69,6 @@ public class Database {
 	}
 
 	public static void readDevicesFromFile(Home home) {
-		// List<Device> devices = new ArrayList<>();
 		StringBuilder sb = new StringBuilder();
 
 		try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
@@ -90,22 +89,87 @@ public class Database {
 		String[] deviceStrings = jsonString.split("\\},\\{");
 
 		for (String deviceString : deviceStrings) {
-			deviceString = deviceString.replaceAll("[{}]", ""); // Remove curly braces
+	        deviceString = deviceString.replaceAll("[{}]", ""); // Remove curly braces
 
-			String[] attributes = deviceString.split(",");
+	        String[] attributes = deviceString.split(",");
 
-			// Device device = new Device();
+	        String deviceName = "";
+	        String status = "";
+	        String controlled = "";
+	        String temp = "";
+	        String color = "";
+	        String channel = "";
 
-			for (String attribute : attributes) {
-				String[] keyValue = attribute.split(":");
-				String key = keyValue[0].replace("\"", "").trim();
-				String value = keyValue[1].replace("\"", "").trim();
+	        for (String attribute : attributes) {
+	            String[] keyValue = attribute.split(":");
+	            String key = keyValue[0].replace("\"", "").trim();
+	            String value = keyValue[1].replace("\"", "").trim();
 
-				if (key.equals("name")) {
-					String deviceName = value;
+	            switch (key) {
+	                case "name":
+	                    deviceName = value;
+	                    break;
+	                case "status":
+	                    status = value;
+	                    break;
+	                case "controlled":
+	                    controlled = value;
+	                    break;
+	                case "temp":
+	                    temp = value;
+	                    break;
+	                case "color":
+	                    color = value;
+	                    break;
+	                case "channel":
+	                    channel = value;
+	                    break;
+	                default:
+	                    break;
+	            }
+	        }
 
-				}
-			}
+	        //set the appropriate device attributes
+	        switch (deviceName) {
+	  
+	        	case "Right Lamp":
+	        		home.getLamp1().set_device_name(deviceName);
+	        		home.getLamp1().set_status(Boolean.parseBoolean(status));
+	        		home.getLamp1().set_controlled(Boolean.parseBoolean(controlled));
+	        		break;
+	        	case "Left Lamp":
+	        		home.getLamp2().set_device_name(deviceName);
+	        		home.getLamp2().set_status(Boolean.parseBoolean(status));
+	        		home.getLamp2().set_controlled(Boolean.parseBoolean(controlled));
+	        		break;
+	        	case "LED":
+	        		home.getLed().set_device_name(deviceName);
+	        		home.getLed().set_status(Boolean.parseBoolean(status));
+	        		home.getLed().set_controlled(Boolean.parseBoolean(controlled));
+	        		home.getLed().set_color(Integer.parseInt(color));
+	        		break;
+	        	case "Right AC":
+	        		home.getAc1().set_device_name(deviceName);
+	        		home.getAc1().set_status(Boolean.parseBoolean(status));
+	        		home.getAc1().set_controlled(Boolean.parseBoolean(controlled));
+            		home.getAc1().set_temp(Integer.parseInt(temp)); 
+            		break;
+	        	case "Left AC":
+	        		home.getAc2().set_device_name(deviceName);
+	        		home.getAc2().set_status(Boolean.parseBoolean(status));
+	        		home.getAc2().set_controlled(Boolean.parseBoolean(controlled));
+	        		home.getAc2().set_temp(Integer.parseInt(temp)); 
+	        		break;
+	        	case "TV":
+	        		home.getTv().set_device_name(deviceName);
+	        		home.getTv().set_status(Boolean.parseBoolean(status));
+	        		home.getTv().set_controlled(Boolean.parseBoolean(controlled));
+	        		home.getTv().set_channel(Integer.parseInt(channel)); 
+	        		break;
+	        	default:
+	        		System.out.println("Unknown device type: " + deviceName);
+	        		break;
+	        }
 		}
 	}
 }

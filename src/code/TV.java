@@ -16,6 +16,19 @@ public class TV extends Device {
 		this.type = "TV";
 		this.iconPath = "resources\\tvicon.jpg";
 	}
+	
+	public TV() {
+		// Local vars
+		this.channel = -1;
+
+		// Device vars
+		this.controlled = false;
+		this.status = false;
+		this.priority = 1;
+		this.device_name = "";
+		this.type = "TV";
+		this.iconPath = "resources\\tvicon.jpg";
+	}
 
 	// Method to get the channel field of the device
 	public int get_channel() {

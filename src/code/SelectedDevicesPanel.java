@@ -50,7 +50,7 @@ public class SelectedDevicesPanel extends JPanel{
 				this.add(button);
 			}
 		}
-		
+		Database.writeDevicesToFile(HomeViewWindow.home.getDevices());
 		// Refresh the panel to show updated buttons
 		this.revalidate();
 		this.repaint();

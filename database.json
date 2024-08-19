@@ -1,0 +1,1 @@
+[{"name":Right Lamp,"status":false,"controlled":false,},{"name":Right AC,"status":true,"controlled":true,"temp":27},{"name":Left Lamp,"status":true,"controlled":true,},{"name":TV,"status":true,"controlled":false,"channel":0},{"name":Left AC,"status":true,"controlled":true,"temp":25},{"name":LED,"status":false,"controlled":false,"color":-1}]

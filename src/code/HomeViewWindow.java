@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class HomeViewWindow extends JPanel {
-	private Home home;
+	public static Home home;
 	Image background;
 	private String temperature1;
 	private String temperature2;
@@ -20,15 +20,24 @@ public class HomeViewWindow extends JPanel {
 
 	public HomeViewWindow(int x, int y, int width, int height, MainAppWindow mainAppWindow, Home home) {
 		this.home = home;
-		// System.out.println("in HomeViewWindow: constructor");
-		// Setting the size of the frame
 		this.setBounds(x, y, width, height);
-		this.temperature1 = "";
-		this.temperature2 = "";
+		this.temperature1 = home.getAc1().get_temp() + "\u00B0C";
+		this.temperature2 = home.getAc2().get_temp() + "\u00B0C";
 		this.lamp2path = "resources\\lamp2Off.png";
-		this.ledColorPath = "";
-		this.channelpath = "";
-		this.lamp1path = "";
+		this.setLedColor(home.getLed().get_color());
+		this.setChannel(home.getTv().get_channel());
+		if (home.getLamp1().get_status()) {
+			System.out.println("lamp1 on");
+			this.lamp1path = "resources\\lampOn1.jpg";
+		}
+		else
+			this.lamp1path = "";
+		if (home.getLamp2().get_status()) {
+			System.out.println("lamp1 on");
+			this.lamp2path = "resources\\lamp2On.png";
+		}
+		else
+			this.lamp2path = "resources\\lamp2Off.png";
 	}
 
 	public void paint(Graphics g) {
@@ -55,19 +64,19 @@ public class HomeViewWindow extends JPanel {
 		Image AC1 = new ImageIcon("resources\\AC4.png").getImage();
 		g.drawImage(AC1, 440, 100, 160, 65, null);
 		// add degrees text on AC1
-		g.setFont(new Font("Arial", Font.BOLD, 16));
-		g.setColor(Color.black);
+		g.setFont(new Font("Arial", Font.BOLD, 12));
+		g.setColor(new Color(0, 240, 255));
 		if (this.temperature1.compareTo("") != 0) {
-			g.drawString(this.temperature1, 520, 132);
+			g.drawString(this.temperature1, 510, 132);
 		}
 
 		// add AC in upper right room
 		Image AC2 = new ImageIcon("resources\\AC4.png").getImage();
 		g.drawImage(AC2, 20, 100, 160, 65, null);
-		g.setFont(new Font("Arial", Font.BOLD, 16));
-		g.setColor(Color.black);
+		g.setFont(new Font("Arial", Font.BOLD, 12));
+		g.setColor(new Color(0, 240, 255));
 		if (this.temperature2.compareTo("") != 0) {
-			g.drawString(this.temperature2, 100, 132);
+			g.drawString(this.temperature2, 90, 132);
 		}
 
 		// add lamp2 in upper left room
@@ -77,6 +86,7 @@ public class HomeViewWindow extends JPanel {
 		if (this.lamp1path.compareTo("") != 0) {
 			Image lamp1On = new ImageIcon(this.lamp1path).getImage();
 			g.drawImage(lamp1On, 625, 213, 27, 13, null);
+			
 		}
 
 		// add led to kitchen
@@ -92,38 +102,43 @@ public class HomeViewWindow extends JPanel {
 	// change temperatureAC1
 	public void setTemperature1(String newTemperature) {
 		this.temperature1 = newTemperature;
+		Database.writeDevicesToFile(home.getDevices());
 		repaint(); // Trigger a repaint to update the display
 	}
 
 	// change temperatureAC1
 	public void setTemperature2(String newTemperature) {
 		this.temperature2 = newTemperature;
+		Database.writeDevicesToFile(home.getDevices());
 		repaint(); // Trigger a repaint to update the display
 	}
 
 	public void turnOnLamp2() {
 		this.lamp2path = "resources\\lamp2On.png";
+		Database.writeDevicesToFile(home.getDevices());
 		repaint();
 	}
 
 	public void turnOffLamp2() {
 		this.lamp2path = "resources\\lamp2Off.png";
+		Database.writeDevicesToFile(home.getDevices());
 		repaint();
 	}
 
 	public void turnOnLamp1() {
 		this.lamp1path = "resources\\lampOn1.jpg";
+		Database.writeDevicesToFile(home.getDevices());
 		repaint();
 	}
 
 	public void turnOffLamp1() {
 		this.lamp1path = "";
+		Database.writeDevicesToFile(home.getDevices());
 		repaint();
 	}
 
 	// set TV channel
 	public void setChannel(int channel) {
-		System.out.println(channel);
 		if (channel == 0) {
 			this.channelpath = "resources\\sports.jpg";
 		} else if (channel == 1) {
@@ -133,16 +148,19 @@ public class HomeViewWindow extends JPanel {
 		} else if (channel == 3) {
 			this.channelpath = "resources\\haim.jpg";
 		}
+		Database.writeDevicesToFile(home.getDevices());
 		repaint();
 	}
 
 	public void turnOffTv() {
 		this.channelpath = "";
+		Database.writeDevicesToFile(home.getDevices());
 		repaint();
 	}
 
 	public void turnOnTv() {
 		setChannel(home.getTv().get_channel());
+		Database.writeDevicesToFile(home.getDevices());
 	}
 
 	// set led color
@@ -163,6 +181,7 @@ public class HomeViewWindow extends JPanel {
 			home.getLed().set_color(-1);
 			this.ledColorPath = "";
 		}
+		Database.writeDevicesToFile(home.getDevices());
 	}
 
 }
