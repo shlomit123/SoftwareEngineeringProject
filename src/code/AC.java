@@ -5,20 +5,13 @@ public class AC extends Device {
 	private int temp;
 	private int mode;
 
-	public AC(String name) {
-		this.reset(name);
-	}
-
-	@Override
-	public void reset(String name) {
-
+	public AC(String name, boolean status, boolean controlled, int temp) {
 		// Local vars
-		this.temp = 25;
-		this.mode = 0;
+		this.temp = temp;
 
 		// Device vars
-		this.controlled = false;
-		this.status = false;
+		this.controlled = controlled;
+		this.status = status;
 		this.priority = 4;
 		this.device_name = name;
 		this.type = "AC";

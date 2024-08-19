@@ -77,7 +77,4 @@ public abstract class Device {
 			turn_on();
 		}
 	}
-
-	// Abstract method to reset the device to its default state
-	public abstract void reset(String name);
 }
