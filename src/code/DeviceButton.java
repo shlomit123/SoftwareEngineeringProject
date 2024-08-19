@@ -37,7 +37,7 @@ public class DeviceButton extends JButton implements ActionListener {
 					try {
 						home.getMainAppWindow().getDeviceSearchWindow().getSearchedDevicesPanel()
 								.updateSearchedDevices("");
-						home.getMainAppWindow().getDeviceSearchWindow().geSearchTextBoxPanel().getSearchTextField()
+						home.getMainAppWindow().getDeviceSearchWindow().getSearchTextBoxPanel().getSearchTextField()
 								.setText("");
 					} catch (Exception e2) {
 

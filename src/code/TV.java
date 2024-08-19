@@ -4,19 +4,13 @@ public class TV extends Device {
 
 	private int channel;
 
-	public TV(String name) {
-		this.reset(name);
-	}
-
-	@Override
-	public void reset(String name) {
-
+	public TV(String name, boolean status, boolean controlled, int channel) {
 		// Local vars
-		this.channel = 0;
+		this.channel = channel;
 
 		// Device vars
-		this.controlled = false;
-		this.status = false;
+		this.controlled = controlled;
+		this.status = status;
 		this.priority = 1;
 		this.device_name = name;
 		this.type = "TV";

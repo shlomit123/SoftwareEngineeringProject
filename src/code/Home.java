@@ -16,18 +16,20 @@ public class Home {
 
 	// constructor
 	public Home() {
+		Database.createFileIfNotExists();
 		initDevices();
 		window = new MainAppWindow(this);
 	}
 
 	// create instances for all devices in home and add to devices array
 	public void initDevices() {
-		lamp1 = new Lamp("Right Lamp");
-		lamp2 = new Lamp("Left Lamp");
-		led = new Led("LED");
-		ac1 = new AC("Right AC");
-		ac2 = new AC("Left AC");
-		tv = new TV("TV");
+		lamp1 = new Lamp("Right Lamp", false, false);
+		lamp2 = new Lamp("Left Lamp", false, false);
+		led = new Led("LED", false, false, -1);
+		ac1 = new AC("Right AC", false, false, 25);
+		ac2 = new AC("Left AC", false, false, 25);
+		tv = new TV("TV", false, false, 0);
+		Database.readDevicesFromFile(this);
 		devices.add(lamp1);
 		devices.add(ac1);
 		devices.add(lamp2);
@@ -36,7 +38,7 @@ public class Home {
 		devices.add(led);
 	}
 
-	//getters
+	// getters
 	public MainAppWindow getMainAppWindow() {
 		return this.window;
 	}
@@ -44,7 +46,7 @@ public class Home {
 	public ArrayList<Device> getDevices() {
 		return this.devices;
 	}
-	
+
 	public Led getLed() {
 		return this.led;
 	}
@@ -69,12 +71,12 @@ public class Home {
 		return this.lamp2;
 	}
 
-	//sort devices array
-	public void sortDevices() { 
+	// sort devices array
+	public void sortDevices() {
 		Collections.sort(devices, Home.compareDevicesType);
 	}
 
-	//comparator for sort method- comparing according to device priority
+	// comparator for sort method- comparing according to device priority
 	public static Comparator<Device> compareDevicesType = new Comparator<Device>() {
 
 		public int compare(Device dev1, Device dev2) {

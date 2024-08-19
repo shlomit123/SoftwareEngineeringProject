@@ -82,29 +82,29 @@ public class LedControlWindow extends JFrame implements ActionListener {
 		deviceControlPanel.removeAll();
 		deviceControlPanel.setLayout(new BoxLayout(deviceControlPanel, BoxLayout.Y_AXIS));
 
-        // Create a container panel for the buttons
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS)); 
-        buttonPanel.setAlignmentX(JComponent.CENTER_ALIGNMENT); 
+		// Create a container panel for the buttons
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+		buttonPanel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 
-        // Load the power on/off icons
-        ImageIcon powerOnIcon = new ImageIcon("resources/on.png");
-        ImageIcon powerOffIcon = new ImageIcon("resources/off.png");
-        //create button and clear the background
+		// Load the power on/off icons
+		ImageIcon powerOnIcon = new ImageIcon("resources/on.png");
+		ImageIcon powerOffIcon = new ImageIcon("resources/off.png");
+		// create button and clear the background
 		toggleStatusButton = new JButton();
 		toggleStatusButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		toggleStatusButton.addActionListener(this);
 		toggleStatusButton.setPreferredSize(new Dimension(10, 10));
 		toggleStatusButton.setFocusPainted(false);
-        toggleStatusButton.setContentAreaFilled(false);
-        toggleStatusButton.setBorderPainted(false);
-        toggleStatusButton.setOpaque(false);
-        
-        // "Turn Off" button
-        //toggleStatusButton = new JButton();
-        //toggleStatusButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-        //toggleStatusButton.setFocusPainted(false);
-		//toggleStatusButton.addActionListener(this);
+		toggleStatusButton.setContentAreaFilled(false);
+		toggleStatusButton.setBorderPainted(false);
+		toggleStatusButton.setOpaque(false);
+
+		// "Turn Off" button
+		// toggleStatusButton = new JButton();
+		// toggleStatusButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		// toggleStatusButton.setFocusPainted(false);
+		// toggleStatusButton.addActionListener(this);
 		if (led.get_status()) {
 			toggleStatusButton.setIcon(powerOffIcon);
 			deviceControlPanel.add(toggleStatusButton);
@@ -124,12 +124,24 @@ public class LedControlWindow extends JFrame implements ActionListener {
 			blueColorButton.addActionListener(this);
 			greenColorButton.addActionListener(this);
 			purpleColorButton.addActionListener(this);
-			
+
 			// Set alignment for color buttons and add them to the button panel
-            defaultColorButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-            blueColorButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-            greenColorButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-            purpleColorButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+			defaultColorButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+			blueColorButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+			greenColorButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+			purpleColorButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+
+			// checking if the led's color is already set from before to mark the relevant
+			// button as selected
+			if (led.get_color() == 0) {
+				defaultColorButton.setSelected(true);
+			} else if (led.get_color() == 1) {
+				blueColorButton.setSelected(true);
+			} else if (led.get_color() == 2) {
+				greenColorButton.setSelected(true);
+			} else if (led.get_color() == 3) {
+				purpleColorButton.setSelected(true);
+			}
 
 			deviceControlPanel.add(defaultColorButton);
 			deviceControlPanel.add(blueColorButton);

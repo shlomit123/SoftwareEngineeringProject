@@ -4,17 +4,12 @@ public class Led extends Device {
 
 	private int color;
 
-	public Led(String name) {
-		this.reset(name);
-	}
-
-	@Override
-	public void reset(String name) {
+	public Led(String name, boolean status, boolean controlled, int color) {
 		// Local vars
-		this.color = 0;
+		this.color = color;
 		// Device vars
-		this.controlled = false;
-		this.status = false;
+		this.controlled = controlled;
+		this.status = status;
 		this.priority = 2;
 		this.device_name = name;
 		this.type = "LED";
