@@ -7,13 +7,13 @@ import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 public class MainAppWindow extends JFrame {
 	final int HEIGHT = 600;
 	final int WIDTH = 1000;
 	final int CONTENT_PANE_HEIGHT = 563;
 	final int CONTENT_PANE_WIDTH = 986;
-
 	private HomeViewWindow homeView;
 	private ControlAppWindow controlApp;
 	private LampControlWindow currentLampControlWindow;
@@ -24,6 +24,8 @@ public class MainAppWindow extends JFrame {
 	private Home home;
 
 	public MainAppWindow(Home home1) {
+		// removes 'focus' property from all buttons
+		UIManager.put("Button.focus", new java.awt.Color(0, 0, 0, 0));
 		// System.out.println("in MainAppWindow: constructor");
 		// Initiating a new JFrame (a GUI canvas to add components to)
 		// setting the frame's title
@@ -53,9 +55,8 @@ public class MainAppWindow extends JFrame {
 		// Making the frame visible
 		this.setVisible(true);
 
-		// information message
-		JOptionPane.showMessageDialog(this, "Welcome to your home. lots of imformation", "title",
-				JOptionPane.INFORMATION_MESSAGE);
+		// initiate tutorial messages dialog
+		new TutorialMessagesDialog();
 	}
 
 	public HomeViewWindow getHomeView() {

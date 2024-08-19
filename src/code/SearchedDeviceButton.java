@@ -32,6 +32,7 @@ public class SearchedDeviceButton extends JButton implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		this.device.set_controlled(true);
 		home.getMainAppWindow().getControllAppWindow().getSelectedDevicesPanel().updateSelectedDevices();
-		home.getMainAppWindow().getDeviceSearchWindow().getSearchedDevicesPanel().updateSearchedDevices("");
+		home.getMainAppWindow().getDeviceSearchWindow().getSearchedDevicesPanel().updateSearchedDevices(
+				home.getMainAppWindow().getDeviceSearchWindow().getSearchTextBoxPanel().getSearchTextField().getText());
 	}
 }

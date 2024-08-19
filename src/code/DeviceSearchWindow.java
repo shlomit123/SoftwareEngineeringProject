@@ -45,7 +45,7 @@ public class DeviceSearchWindow extends JFrame {
 		return this.devicesPanel;
 	}
 
-	public SearchTextBoxPanel geSearchTextBoxPanel() {
+	public SearchTextBoxPanel getSearchTextBoxPanel() {
 		return this.searchPanel;
 	}
 }
