@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 public class AcControlWindow extends JFrame implements ActionListener {
 
 	private Dimension frameDimension = new Dimension(170, 220);
-	private MainAppWindow mainAppWindow1;
+	private MainAppWindow mainAppWindow;
 	private JButton toggleStatusButton;
 	private JButton increaseTempButton;
 	private JButton decreaseTempButton;
@@ -26,7 +26,7 @@ public class AcControlWindow extends JFrame implements ActionListener {
 	private JPanel deviceControlPanel;
 
 	public AcControlWindow(AC ac, MainAppWindow mainAppWindow) {
-		this.mainAppWindow1 = mainAppWindow;
+		this.mainAppWindow = mainAppWindow;
 		this.ac = ac;
 		// Initiating a new JFrame (a GUI canvas to add components to)
 		// setting the frame's title
@@ -57,76 +57,76 @@ public class AcControlWindow extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		// Change AC status and display according to buttons presses
 		if (e.getSource() == toggleStatusButton) {
 			ac.toggle();
 			if (ac.get_device_name().compareTo("Right AC") == 0) {
 				if (ac.get_status()) {
-					mainAppWindow1.getHomeView().setTemperature1(ac.get_temp() + "\u00B0C");
+					mainAppWindow.getHomeView().setTemperature1(ac.get_temp() + "\u00B0C");
 				} else {
-					///// add turn off lamp 1
-					mainAppWindow1.getHomeView().setTemperature1("");
+					mainAppWindow.getHomeView().setTemperature1("");
 				}
 			} else {
 				if (ac.get_status()) {
-					mainAppWindow1.getHomeView().setTemperature2(ac.get_temp() + "\u00B0C");
+					mainAppWindow.getHomeView().setTemperature2(ac.get_temp() + "\u00B0C");
 				} else {
-					mainAppWindow1.getHomeView().setTemperature2("");
+					mainAppWindow.getHomeView().setTemperature2("");
 				}
 			}
 		} else if (e.getSource() == decreaseTempButton) {
 			this.ac.set_temp(this.ac.get_temp() - 1);
 			if (ac.get_device_name().compareTo("Right AC") == 0) {
-				mainAppWindow1.getHomeView().setTemperature1(ac.get_temp() + "\u00B0C");
+				mainAppWindow.getHomeView().setTemperature1(ac.get_temp() + "\u00B0C");
 			} else {
-				mainAppWindow1.getHomeView().setTemperature2(ac.get_temp() + "\u00B0C");
+				mainAppWindow.getHomeView().setTemperature2(ac.get_temp() + "\u00B0C");
 			}
 		} else if (e.getSource() == increaseTempButton) {
 			this.ac.set_temp(this.ac.get_temp() + 1);
 			if (ac.get_device_name().compareTo("Right AC") == 0) {
-				mainAppWindow1.getHomeView().setTemperature1(ac.get_temp() + "\u00B0C");
+				mainAppWindow.getHomeView().setTemperature1(ac.get_temp() + "\u00B0C");
 			} else {
-				mainAppWindow1.getHomeView().setTemperature2(ac.get_temp() + "\u00B0C");
+				mainAppWindow.getHomeView().setTemperature2(ac.get_temp() + "\u00B0C");
 			}
 		}
+		// Update display
 		updateDeviceControlWindow(ac);
-		mainAppWindow1.getHomeView().repaint();
+		mainAppWindow.getHomeView().repaint();
 	}
 
 	public void updateDeviceControlWindow(AC ac) {
 		deviceControlPanel.removeAll();
 		deviceControlPanel.setLayout(new BoxLayout(deviceControlPanel, BoxLayout.Y_AXIS));
-		
+
 		// Load the power on/off icons
-        ImageIcon powerOnIcon = new ImageIcon("resources/on.png");
-        ImageIcon powerOffIcon = new ImageIcon("resources/off.png");
-        //create button and clear the background
+		ImageIcon powerOnIcon = new ImageIcon("resources/on.png");
+		ImageIcon powerOffIcon = new ImageIcon("resources/off.png");
+		// create button and clear the background
 		toggleStatusButton = new JButton();
 		toggleStatusButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		toggleStatusButton.addActionListener(this);
 		toggleStatusButton.setPreferredSize(new Dimension(50, 50));
 		toggleStatusButton.setFocusPainted(false);
-        toggleStatusButton.setContentAreaFilled(false);
-        toggleStatusButton.setBorderPainted(false);
-        toggleStatusButton.setOpaque(false);
-        
+		toggleStatusButton.setContentAreaFilled(false);
+		toggleStatusButton.setBorderPainted(false);
+		toggleStatusButton.setOpaque(false);
+
 		if (ac.get_status()) {
 			toggleStatusButton.setIcon(powerOffIcon);
 			deviceControlPanel.add(toggleStatusButton);
 			tempLabel = new JLabel();
 			tempLabel.setText(ac.get_temp() + "\u00B0C");
-			
-			tempLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 14)); 
-	        //currentChanneLabel.setForeground(Color.blue);  
+
+			tempLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
 			tempLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-			
-			//create increase button
+
+			// create increase button
 			increaseTempButton = new JButton();
 			increaseTempButton.setFocusPainted(false);
 			increaseTempButton.setContentAreaFilled(false);
 			increaseTempButton.setBorderPainted(false);
 			increaseTempButton.setText("+");
 			increaseTempButton.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
-			//create decrease button
+			// create decrease button
 			decreaseTempButton = new JButton();
 			decreaseTempButton.setFocusPainted(false);
 			decreaseTempButton.setContentAreaFilled(false);
@@ -135,7 +135,7 @@ public class AcControlWindow extends JFrame implements ActionListener {
 			decreaseTempButton.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
 			decreaseTempButton.addActionListener(this);
 			increaseTempButton.addActionListener(this);
-			//align in the middle
+			// align in the middle
 			decreaseTempButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 			increaseTempButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 			tempLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
@@ -156,7 +156,6 @@ public class AcControlWindow extends JFrame implements ActionListener {
 
 	@Override
 	public void paint(Graphics g) {
-		// TODO Auto-generated method stub
 		super.paint(g);
 	}
 }

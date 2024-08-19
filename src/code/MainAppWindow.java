@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+// The app's main window, which contains all the GUI's elements
 public class MainAppWindow extends JFrame {
 	final int HEIGHT = 600;
 	final int WIDTH = 1000;
@@ -23,10 +24,10 @@ public class MainAppWindow extends JFrame {
 	private DeviceSearchWindow currentSearchWindow;
 	private Home home;
 
+	// Constructor
 	public MainAppWindow(Home home1) {
 		// removes 'focus' property from all buttons
 		UIManager.put("Button.focus", new java.awt.Color(0, 0, 0, 0));
-		// System.out.println("in MainAppWindow: constructor");
 		// Initiating a new JFrame (a GUI canvas to add components to)
 		// setting the frame's title
 		this.setTitle("Smart Home App");
@@ -59,6 +60,8 @@ public class MainAppWindow extends JFrame {
 		new TutorialMessagesDialog();
 	}
 
+	// Getters
+
 	public HomeViewWindow getHomeView() {
 		return this.homeView;
 	}
@@ -71,6 +74,7 @@ public class MainAppWindow extends JFrame {
 		return this.currentSearchWindow;
 	}
 
+	// Make sure there is only one open device configuration window at a time
 	public void openDeviceControlWindow(Device device) {
 		if ((currentLampControlWindow != null && currentLampControlWindow.isDisplayable())
 				|| (currentLedControlWindow != null && currentLedControlWindow.isDisplayable())
@@ -128,6 +132,7 @@ public class MainAppWindow extends JFrame {
 		}
 	}
 
+	// Make sure there is only one open search window at a time
 	public void openDeviceSearchWindow() {
 		if (currentSearchWindow != null && currentSearchWindow.isDisplayable()) {
 			JOptionPane.showMessageDialog(this,

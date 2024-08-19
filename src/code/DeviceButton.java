@@ -10,12 +10,14 @@ import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+//A class to implement a personalized JButton for the assigned devices
 public class DeviceButton extends JButton implements ActionListener {
 
 	private Device device;
 	private MainAppWindow mainAppWindow;
 	private Home home;
 
+	// Constructor
 	public DeviceButton(ImageIcon deviceImg, Device device, MainAppWindow mainAppWindow1, Home home) {
 		super(device.get_device_name());
 		this.mainAppWindow = mainAppWindow1;

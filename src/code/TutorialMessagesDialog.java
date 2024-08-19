@@ -5,13 +5,15 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
+// A class to display an introduction to the app, and a tutorial for the user
 public class TutorialMessagesDialog {
 
 	private String openingInfoMessageString = "Welcome to your smart home application!\n\n"
 			+ "In the app you can control all of your smart devices, and see your actions on the home simulator.\n"
 			+ "The app contains two major components:\n"
 			+ "- The control app component, used to control your smart devices, add/remove them from the app and modify their status.\n"
-			+ "- The home view component, used to view your home and see the changes you make in real-time.";
+			+ "- The home view component, used to view your home and see the changes you make in real-time.\n"
+			+ "Don't worry, if you close the app, you can pick up from where you left off.";
 	private String controlAppInfoMessageString = "In the control app component, you can see all of your assigned devices.\n\n"
 			+ "Once you assigned a device you can click on it's button to open a configuration window in which you can customize your device.\n"
 			+ "You can also right-click on the device's button if you would like to un-assign it.\n"

@@ -7,8 +7,8 @@ public class ControlAppWindow extends JPanel {
 	private SelectedDevicesPanel devicesPanel;
 	private TopPanel topPanel;
 
+	// Creating the control app panel
 	ControlAppWindow(int x, int y, int width, int height, MainAppWindow mainAppWindow, Home home) {
-		// System.out.println("in ControlAppWindow: constructor");
 		// Setting the size of the frame
 		this.setBounds(x, y, width, height);
 		this.setLayout(null);
@@ -18,6 +18,8 @@ public class ControlAppWindow extends JPanel {
 		this.add(devicesPanel);
 
 	}
+
+	// Getters
 
 	public SelectedDevicesPanel getSelectedDevicesPanel() {
 		return this.devicesPanel;

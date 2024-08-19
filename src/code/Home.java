@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+// The main class - The home contains and initiates interactions between all of the app's components (devices, GUI, DB)
 public class Home {
 	private ArrayList<Device> devices = new ArrayList<>();
 	private Lamp lamp1;
@@ -23,7 +24,7 @@ public class Home {
 
 	// create instances for all devices in home and add to devices array
 	public void initDevices() {
-		
+
 		lamp1 = new Lamp();
 		lamp2 = new Lamp();
 		led = new Led();
@@ -37,8 +38,7 @@ public class Home {
 		devices.add(tv);
 		devices.add(ac2);
 		devices.add(led);
-		
-		
+
 	}
 
 	// getters
@@ -94,17 +94,5 @@ public class Home {
 				ofType.add(dev);
 		}
 		return ofType;
-	}
-
-	public void turnOnAllDevices() {////////////////////////
-		for (Device device : devices) {
-			device.turn_on();
-		}
-	}
-
-	public void turnOffAllDevices() {//////////////////////////
-		for (Device device : devices) {
-			device.turn_off();
-		}
 	}
 }

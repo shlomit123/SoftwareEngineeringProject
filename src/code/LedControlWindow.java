@@ -58,6 +58,7 @@ public class LedControlWindow extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		// Update the LED's status and display according to buttons presses
 		if (e.getSource() == toggleStatusButton) {
 			led.toggle();
 			if (led.get_status()) {
@@ -101,10 +102,6 @@ public class LedControlWindow extends JFrame implements ActionListener {
 		toggleStatusButton.setOpaque(false);
 
 		// "Turn Off" button
-		// toggleStatusButton = new JButton();
-		// toggleStatusButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-		// toggleStatusButton.setFocusPainted(false);
-		// toggleStatusButton.addActionListener(this);
 		if (led.get_status()) {
 			toggleStatusButton.setIcon(powerOffIcon);
 			deviceControlPanel.add(toggleStatusButton);
@@ -158,7 +155,6 @@ public class LedControlWindow extends JFrame implements ActionListener {
 
 	@Override
 	public void paint(Graphics g) {
-		// TODO Auto-generated method stub
 		super.paint(g);
 	}
 }

@@ -12,12 +12,14 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+// A class to hold the search text box and search button in the search window 
 public class SearchTextBoxPanel extends JPanel implements ActionListener {
 	private JButton submitSearchButton;
 	private JTextField searchTextField;
 	private MainAppWindow mainAppWindow;
 	private Home home;
 
+	// Constructor
 	public SearchTextBoxPanel(int width, int height, MainAppWindow mainAppWindow1, Home home) {
 		this.setBackground(Color.white);
 		this.setBounds(0, 0, width, height);
@@ -28,10 +30,10 @@ public class SearchTextBoxPanel extends JPanel implements ActionListener {
 		searchTextField.setFont(new Font("David", Font.BOLD, 20));
 
 		submitSearchButton = new JButton();
-		submitSearchButton.addActionListener(this); //
-		submitSearchButton.setPreferredSize(new Dimension(50, height)); //
-		submitSearchButton.setBorderPainted(false); // Remove the border //
-		submitSearchButton.setContentAreaFilled(false); // Remove the background //
+		submitSearchButton.addActionListener(this);
+		submitSearchButton.setPreferredSize(new Dimension(50, height));
+		submitSearchButton.setBorderPainted(false); // Remove the border
+		submitSearchButton.setContentAreaFilled(false); // Remove the background
 		submitSearchButton.setFocusPainted(false); // Remove the focus indicator
 		submitSearchButton.setIcon(new ImageIcon("resources\\searchIcon.png"));
 
@@ -45,7 +47,6 @@ public class SearchTextBoxPanel extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// System.out.println(searchTextField.getText());
 		home.getMainAppWindow().getControllAppWindow().getSelectedDevicesPanel().updateSelectedDevices();
 		home.getMainAppWindow().getDeviceSearchWindow().getSearchedDevicesPanel()
 				.updateSearchedDevices(searchTextField.getText());

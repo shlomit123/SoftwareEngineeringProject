@@ -11,6 +11,7 @@ public class DeviceSearchWindow extends JFrame {
 	private SearchTextBoxPanel searchPanel;
 	private MainAppWindow mainAppWindow1;
 
+	// The search window to assign unassigned devices
 	public DeviceSearchWindow(MainAppWindow mainAppWindow, Home home) {
 		mainAppWindow1 = mainAppWindow;
 		// Initiating a new JFrame (a GUI canvas to add components to)

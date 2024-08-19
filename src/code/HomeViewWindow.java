@@ -8,6 +8,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+// The home's display in real-time
 public class HomeViewWindow extends JPanel {
 	public static Home home;
 	Image background;
@@ -18,38 +19,38 @@ public class HomeViewWindow extends JPanel {
 	private String channelpath;
 	private String ledColorPath;
 
+	// Constructor
 	public HomeViewWindow(int x, int y, int width, int height, MainAppWindow mainAppWindow, Home home) {
 		this.home = home;
 		this.setBounds(x, y, width, height);
-		this.temperature1 = home.getAc1().get_temp() + "\u00B0C";
-		this.temperature2 = home.getAc2().get_temp() + "\u00B0C";
+		// Display devices' status according to their current value
+		if (home.getAc1().get_status()) {
+			this.temperature1 = home.getAc1().get_temp() + "\u00B0C";
+		} else {
+			this.temperature1 = "";
+		}
+		if (home.getAc2().get_status()) {
+			this.temperature2 = home.getAc2().get_temp() + "\u00B0C";
+		} else {
+			this.temperature2 = "";
+		}
 		this.lamp2path = "resources\\lamp2Off.png";
 		this.setLedColor(home.getLed().get_color());
 		this.setChannel(home.getTv().get_channel());
 		if (home.getLamp1().get_status()) {
-			System.out.println("lamp1 on");
 			this.lamp1path = "resources\\lampOn1.jpg";
-		}
-		else
+		} else
 			this.lamp1path = "";
 		if (home.getLamp2().get_status()) {
-			System.out.println("lamp1 on");
 			this.lamp2path = "resources\\lamp2On.png";
-		}
-		else
+		} else
 			this.lamp2path = "resources\\lamp2Off.png";
 	}
 
 	public void paint(Graphics g) {
-		// System.out.println("in HomeViewWindow: paint");
 		super.paintComponent(g);
-		// this.setBackground(Color.blue);
-		// Graphics2D g2d = (Graphics2D) g;
 		background = new ImageIcon("resources\\1517195.jpg").getImage();
 		g.drawImage(background, 0, 0, null);
-		// g.fillRect(0, 0, 100, 100);
-		// g2d.setBackground(Color.black);
-		// g2d.drawImage(background, 0, 0, null);
 
 		// add TV in down left room
 		Image TV = new ImageIcon("resources\\TV.png").getImage();
@@ -86,7 +87,7 @@ public class HomeViewWindow extends JPanel {
 		if (this.lamp1path.compareTo("") != 0) {
 			Image lamp1On = new ImageIcon(this.lamp1path).getImage();
 			g.drawImage(lamp1On, 625, 213, 27, 13, null);
-			
+
 		}
 
 		// add led to kitchen
@@ -163,7 +164,7 @@ public class HomeViewWindow extends JPanel {
 		Database.writeDevicesToFile(home.getDevices());
 	}
 
-	// set led color
+	// Set led color
 	public void setLedColor(int color) {
 		if (color == 0) {
 			home.getLed().set_color(0);

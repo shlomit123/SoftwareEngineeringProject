@@ -3,8 +3,8 @@ package code;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 
+// A class to set a given image to a desired size
 public class ImageResizer {
 
 	public static ImageIcon resizeImageIcon(ImageIcon icon, int width, int height) {
@@ -16,17 +16,5 @@ public class ImageResizer {
 
 		// Create a new ImageIcon from the scaled image
 		return new ImageIcon(scaledImage);
-	}
-
-	public static void main(String[] args) {
-		// Load your ImageIcon
-		ImageIcon originalIcon = new ImageIcon("resources\\smarthomelogo.png");
-
-		// Resize the ImageIcon
-		ImageIcon resizedIcon = resizeImageIcon(originalIcon, 50, 50);
-
-		// Use the resizedIcon as needed
-		// For example, set it on a JButton
-		JButton button = new JButton(resizedIcon);
 	}
 }

@@ -51,13 +51,13 @@ public class LampControlWindow extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		// Updating the lamp's status and display according to buttons presses
 		if (e.getSource() == toggleStatusButton) {
 			lamp.toggle();
 			if (lamp.get_device_name().compareTo("Right Lamp") == 0) {
 				if (lamp.get_status()) {
 					mainAppWindow1.getHomeView().turnOnLamp1();
 				} else {
-					///// add turn off lamp 1
 					mainAppWindow1.getHomeView().turnOffLamp1();
 				}
 			} else {
@@ -74,22 +74,21 @@ public class LampControlWindow extends JFrame implements ActionListener {
 
 	public void updateDeviceControlWindow(Device device) {
 		deviceControlPanel.removeAll();
-		
+
 		// Load the power on/off icons
-        ImageIcon powerOnIcon = new ImageIcon("resources/on.png");
-        ImageIcon powerOffIcon = new ImageIcon("resources/off.png");
-        //create button and clear the background
+		ImageIcon powerOnIcon = new ImageIcon("resources/on.png");
+		ImageIcon powerOffIcon = new ImageIcon("resources/off.png");
+		// create button and clear the background
 		toggleStatusButton = new JButton();
 		toggleStatusButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		toggleStatusButton.setAlignmentY(JComponent.CENTER_ALIGNMENT);
 		toggleStatusButton.addActionListener(this);
 		toggleStatusButton.setPreferredSize(new Dimension(50, 50));
 		toggleStatusButton.setFocusPainted(false);
-        toggleStatusButton.setContentAreaFilled(false);
-        toggleStatusButton.setBorderPainted(false);
-        toggleStatusButton.setOpaque(false);
-		
-		
+		toggleStatusButton.setContentAreaFilled(false);
+		toggleStatusButton.setBorderPainted(false);
+		toggleStatusButton.setOpaque(false);
+
 		if (device.get_status()) {
 			toggleStatusButton.setIcon(powerOffIcon);
 			deviceControlPanel.add(toggleStatusButton);
@@ -104,9 +103,6 @@ public class LampControlWindow extends JFrame implements ActionListener {
 
 	@Override
 	public void paint(Graphics g) {
-		// TODO Auto-generated method stub
 		super.paint(g);
 	}
 }
-
-

@@ -8,12 +8,14 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+//A class to implement a personalized JButton for the unassigned devices
 public class SearchedDeviceButton extends JButton implements ActionListener {
 
 	private Device device;
 	private MainAppWindow mainAppWindow;
 	private Home home;
 
+	// Constructor
 	public SearchedDeviceButton(ImageIcon deviceImg, Device device, MainAppWindow mainAppWindow1, Home home) {
 		super(device.get_device_name());
 		this.device = device;
