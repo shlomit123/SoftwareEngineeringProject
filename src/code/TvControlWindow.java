@@ -1,6 +1,5 @@
 package code;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -129,11 +128,9 @@ public class TvControlWindow extends JFrame implements ActionListener {
 			currentChanneLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 			
 			deviceControlPanel.add(toggleStatusButton);
-			deviceControlPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 			deviceControlPanel.add(decreaseChannelButton);
-			deviceControlPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+			deviceControlPanel.add(Box.createRigidArea(new Dimension(0, 2)));
 			deviceControlPanel.add(currentChanneLabel);
-			deviceControlPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 			deviceControlPanel.add(increaseChannelButton);
 
 			

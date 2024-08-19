@@ -118,18 +118,21 @@ public class AcControlWindow extends JFrame implements ActionListener {
 			tempLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 14)); 
 	        //currentChanneLabel.setForeground(Color.blue);  
 			tempLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-			decreaseTempButton = new JButton();
-			decreaseTempButton.setFocusPainted(false);
-			decreaseTempButton.setContentAreaFilled(false);
-			decreaseTempButton.setBorderPainted(false);
+			
+			//create increase button
 			increaseTempButton = new JButton();
 			increaseTempButton.setFocusPainted(false);
 			increaseTempButton.setContentAreaFilled(false);
 			increaseTempButton.setBorderPainted(false);
-			decreaseTempButton.setText("+");
-			decreaseTempButton.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
-			increaseTempButton.setText("-");
+			increaseTempButton.setText("+");
 			increaseTempButton.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
+			//create decrease button
+			decreaseTempButton = new JButton();
+			decreaseTempButton.setFocusPainted(false);
+			decreaseTempButton.setContentAreaFilled(false);
+			decreaseTempButton.setBorderPainted(false);
+			decreaseTempButton.setText("-");
+			decreaseTempButton.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
 			decreaseTempButton.addActionListener(this);
 			increaseTempButton.addActionListener(this);
 			//align in the middle
@@ -138,9 +141,9 @@ public class AcControlWindow extends JFrame implements ActionListener {
 			tempLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 
 			deviceControlPanel.add(toggleStatusButton);
-			deviceControlPanel.add(decreaseTempButton);
-			deviceControlPanel.add(tempLabel);
 			deviceControlPanel.add(increaseTempButton);
+			deviceControlPanel.add(tempLabel);
+			deviceControlPanel.add(decreaseTempButton);
 
 		} else {
 			toggleStatusButton.setIcon(powerOnIcon);

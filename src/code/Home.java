@@ -16,14 +16,12 @@ public class Home {
 
 	// constructor
 	public Home() {
-		// System.out.println("in Home constructor");
 		initDevices();
 		window = new MainAppWindow(this);
 	}
 
 	// create instances for all devices in home and add to devices array
 	public void initDevices() {
-		// System.out.println("in Home: initDevices");
 		lamp1 = new Lamp("Right Lamp");
 		lamp2 = new Lamp("Left Lamp");
 		led = new Led("LED");
@@ -38,6 +36,7 @@ public class Home {
 		devices.add(led);
 	}
 
+	//getters
 	public MainAppWindow getMainAppWindow() {
 		return this.window;
 	}
@@ -45,39 +44,7 @@ public class Home {
 	public ArrayList<Device> getDevices() {
 		return this.devices;
 	}
-
-	public void sortDevices() { //////////////////////////
-		Collections.sort(devices, Home.compareDevicesType);
-	}
-
-	public static Comparator<Device> compareDevicesType = new Comparator<Device>() {
-
-		public int compare(Device dev1, Device dev2) {
-			return Integer.compare(dev1.get_priority(), dev2.get_priority());
-		}
-	};
-
-	public ArrayList<Device> findDevice(String type) {
-		ArrayList<Device> ofType = new ArrayList<>();
-		for (Device dev : devices) {
-			if (dev.type.equalsIgnoreCase(type))
-				ofType.add(dev);
-		}
-		return ofType;
-	}
-
-	public void turnOnAllDevices() {
-		for (Device device : devices) {
-			device.turn_on();
-		}
-	}
-
-	public void turnOffAllDevices() {
-		for (Device device : devices) {
-			device.turn_off();
-		}
-	}
-
+	
 	public Led getLed() {
 		return this.led;
 	}
@@ -102,4 +69,37 @@ public class Home {
 		return this.lamp2;
 	}
 
+	//sort devices array
+	public void sortDevices() { 
+		Collections.sort(devices, Home.compareDevicesType);
+	}
+
+	//comparator for sort method- comparing according to device priority
+	public static Comparator<Device> compareDevicesType = new Comparator<Device>() {
+
+		public int compare(Device dev1, Device dev2) {
+			return Integer.compare(dev1.get_priority(), dev2.get_priority());
+		}
+	};
+
+	public ArrayList<Device> findDevice(String type) {
+		ArrayList<Device> ofType = new ArrayList<>();
+		for (Device dev : devices) {
+			if (dev.type.equalsIgnoreCase(type))
+				ofType.add(dev);
+		}
+		return ofType;
+	}
+
+	public void turnOnAllDevices() {////////////////////////
+		for (Device device : devices) {
+			device.turn_on();
+		}
+	}
+
+	public void turnOffAllDevices() {//////////////////////////
+		for (Device device : devices) {
+			device.turn_off();
+		}
+	}
 }
