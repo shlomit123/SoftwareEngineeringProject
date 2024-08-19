@@ -3,19 +3,6 @@ package code;
 public class TV extends Device {
 
 	private int channel;
-
-	public TV(String name, boolean status, boolean controlled, int channel) {
-		// Local vars
-		this.channel = channel;
-
-		// Device vars
-		this.controlled = controlled;
-		this.status = status;
-		this.priority = 1;
-		this.device_name = name;
-		this.type = "TV";
-		this.iconPath = "resources\\tvicon.jpg";
-	}
 	
 	public TV() {
 		// Local vars

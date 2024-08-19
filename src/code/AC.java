@@ -3,19 +3,6 @@ package code;
 public class AC extends Device {
 	private int temp;
 	private int mode;
-
-	public AC(String name, boolean status, boolean controlled, int temp) {
-		// Local vars
-		this.temp = temp;
-
-		// Device vars
-		this.controlled = controlled;
-		this.status = status;
-		this.priority = 4;
-		this.device_name = name;
-		this.type = "AC";
-		this.iconPath = "resources\\acicon.jpg";
-	}
 	
 	public AC() {
 		// Local vars

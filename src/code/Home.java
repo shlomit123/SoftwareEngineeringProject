@@ -23,21 +23,7 @@ public class Home {
 
 	// create instances for all devices in home and add to devices array
 	public void initDevices() {
-		/*
-		lamp1 = new Lamp("Right Lamp", false, false);
-		lamp2 = new Lamp("Left Lamp", false, false);
-		led = new Led("LED", false, false, -1);
-		ac1 = new AC("Right AC", false, false, 25);
-		ac2 = new AC("Left AC", false, false, 25);
-		tv = new TV("TV", false, false, 0);
-		devices.add(lamp1);
-		devices.add(ac1);
-		devices.add(lamp2);
-		devices.add(tv);
-		devices.add(ac2);
-		devices.add(led);
-		Database.writeDevicesToFile(devices);
-		*/
+		
 		lamp1 = new Lamp();
 		lamp2 = new Lamp();
 		led = new Led();
