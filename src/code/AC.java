@@ -3,7 +3,6 @@ package code;
 public class AC extends Device {
 
 	private int temp;
-	private int mode;
 
 	public AC(String name) {
 		this.reset(name);
@@ -14,7 +13,6 @@ public class AC extends Device {
 
 		// Local vars
 		this.temp = 25;
-		this.mode = 0;
 
 		// Device vars
 		this.controlled = false;
@@ -34,15 +32,4 @@ public class AC extends Device {
 	public void set_temp(int t) {
 		this.temp = t;
 	}
-
-	// Method to get the mode field of the device
-	public int get_mode() {
-		return this.mode;
-	}
-
-	// Method to set the mode field of the device
-	public void set_mode(int m) {
-		this.mode = m;
-	}
-
 }

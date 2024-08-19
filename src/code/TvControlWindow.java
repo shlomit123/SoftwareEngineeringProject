@@ -75,7 +75,8 @@ public class TvControlWindow extends JFrame implements ActionListener {
 		updateDeviceControlWindow(tv);
 		mainAppWindow1.getHomeView().repaint();
 	}
-
+	
+	//update device control display according to changes
 	public void updateDeviceControlWindow(TV tv) {
 		deviceControlPanel.removeAll();
 		deviceControlPanel.setLayout(new BoxLayout(deviceControlPanel, BoxLayout.Y_AXIS));
@@ -93,6 +94,7 @@ public class TvControlWindow extends JFrame implements ActionListener {
         toggleStatusButton.setBorderPainted(false);
         toggleStatusButton.setOpaque(false);
 		
+        //device is on- show device's options
         if (tv.get_status()) {
 			toggleStatusButton.setIcon(powerOffIcon);
 			deviceControlPanel.add(toggleStatusButton);
@@ -100,40 +102,47 @@ public class TvControlWindow extends JFrame implements ActionListener {
 	        String channelInfo = "";
 	        if (tv.get_channel() == 0) {
 	            channelInfo = "Sports Channel";
-	        } else {
+	        } else if (tv.get_channel() == 1) {
 	            channelInfo = "Food Channel";
+	        } else if (tv.get_channel() == 2) {
+	            channelInfo = "Movies Channel";
+	        } else {
+	        	channelInfo = "Education Channel";
 	        }
 
 	        currentChanneLabel.setText(channelInfo);
 	        currentChanneLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 14)); 
-	        //currentChanneLabel.setForeground(Color.blue);  
 	        currentChanneLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-			decreaseChannelButton = new JButton();
+			//create dec button
+	        decreaseChannelButton = new JButton();
 			decreaseChannelButton.setFocusPainted(false);
 			decreaseChannelButton.setContentAreaFilled(false);
 			decreaseChannelButton.setBorderPainted(false);
+			decreaseChannelButton.setText("-");
+			decreaseChannelButton.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
+			decreaseChannelButton.addActionListener(this);
+			
+			//create inc button
 			increaseChannelButton = new JButton();
 			increaseChannelButton.setFocusPainted(false);
 			increaseChannelButton.setContentAreaFilled(false);
 			increaseChannelButton.setBorderPainted(false);
-			decreaseChannelButton.setText("+");
-			decreaseChannelButton.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
-			increaseChannelButton.setText("-");
+			increaseChannelButton.setText("+");
 			increaseChannelButton.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
-			decreaseChannelButton.addActionListener(this);
 			increaseChannelButton.addActionListener(this);
+			
 			//align in the middle
 			decreaseChannelButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 			increaseChannelButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 			currentChanneLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 			
 			deviceControlPanel.add(toggleStatusButton);
-			deviceControlPanel.add(decreaseChannelButton);
+			deviceControlPanel.add(increaseChannelButton);
 			deviceControlPanel.add(Box.createRigidArea(new Dimension(0, 2)));
 			deviceControlPanel.add(currentChanneLabel);
-			deviceControlPanel.add(increaseChannelButton);
+			deviceControlPanel.add(decreaseChannelButton);
 
-			
+		//device is off	
 		} else {
 			toggleStatusButton.setIcon(powerOnIcon);
 			deviceControlPanel.add(toggleStatusButton);

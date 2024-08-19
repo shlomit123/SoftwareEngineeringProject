@@ -79,10 +79,10 @@ public class HomeViewWindow extends JPanel {
 			g.drawImage(lamp1On, 625, 213, 27, 13, null);
 		}
 
-		// add fluorescent to kitchen
+		// add led to kitchen
 		Image fluorescent = new ImageIcon("resources\\florosent.jpg").getImage();
 		g.drawImage(fluorescent, 35, 443, 120, 3, null);
-		// changes fluorescent light color according to buttons presses
+		// changes led light color according to buttons presses
 		if (ledColorPath.compareTo("") != 0) {
 			Image fColor = new ImageIcon(ledColorPath).getImage();
 			g.drawImage(fColor, 39, 443, 113, 3, null);
@@ -121,12 +121,17 @@ public class HomeViewWindow extends JPanel {
 		repaint();
 	}
 
-	// set TV to sports channel
+	// set TV channel
 	public void setChannel(int channel) {
+		System.out.println(channel);
 		if (channel == 0) {
 			this.channelpath = "resources\\sports.jpg";
 		} else if (channel == 1) {
 			this.channelpath = "resources\\masterChef.png";
+		} else if (channel == 2) {
+			this.channelpath = "resources\\movies.jpg";
+		} else if (channel == 3) {
+			this.channelpath = "resources\\haim.jpg";
 		}
 		repaint();
 	}
